@@ -1,7 +1,140 @@
-.hello {
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  text-decoration: none;
+  list-style: none;
+}
+
+html {
+  color: #545862;
+  font-size: 15px;
+  font-family: sans-serif;
 }
 
 body {
-  background-color: bisque;
+  font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
+  height: 100vh;
+  background: #f1f2f5;
+  display: flex;
+  align-items: center;
 }
+
+.container {
+  /* border: 1px solid green; */
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  font-size: 15px;
+  font-weight: 400;
+  padding: 1rem;
+  line-height: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+}
+
+.submit-arrow {
+  transform: rotate(180deg);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  font-size: 15px;
+}
+
+form {
+  position: relative;
+}
+
+form input[type=text] {
+  width: 100%;
+  padding: 0 40px 0 1rem;
+  line-height: 50px;
+  height: 50px;
+  font-style: italic;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+form button {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 50px;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.2;
+}
+
+.todo {
+  position: relative;
+  background-color: #fff;
+  padding-left: 1rem;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.todo .checkbox {
+  background-color: transparent;
+  outline: none;
+  padding: 0;
+  border: 2px solid #c1c1c3;
+  cursor: pointer;
+  color: transparent;
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+}
+
+.todo p {
+  padding: 15px 0px;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.todo .dots {
+  opacity: .2;
+  padding: 0 0.5rem;
+  height: 50px;
+  line-height: 0;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.clear {
+  border: none;
+  background-color: transparent;
+  margin: 1rem auto;
+  display: block;
+  opacity: 0.5;
+}
+
+
