@@ -51,9 +51,8 @@ h2 {
 }
 
 .submit-arrow {
-  transform: rotate(180deg);
+  transform: rotate(180deg) scaleY(-1);
   -webkit-transform: scaleY(-1);
-  transform: scaleY(-1);
   font-size: 15px;
 }
 
@@ -68,8 +67,8 @@ form input[type=text] {
   height: 50px;
   font-style: italic;
   border: none;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 form button {
@@ -90,7 +89,7 @@ form button {
   background-color: #fff;
   padding-left: 1rem;
   font-size: 1rem;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   font-weight: 300;
   display: flex;
   align-items: center;
@@ -110,13 +109,13 @@ form button {
 }
 
 .todo p {
-  padding: 15px 0px;
+  padding: 15px 0;
   line-height: 20px;
   word-wrap: break-word;
 }
 
 .todo .dots {
-  opacity: .2;
+  opacity: 0.2;
   padding: 0 0.5rem;
   height: 50px;
   line-height: 0;
@@ -136,5 +135,3 @@ form button {
   display: block;
   opacity: 0.5;
 }
-
-

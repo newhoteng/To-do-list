@@ -1,21 +1,21 @@
-import _ from 'lodash';
 import './style.css';
 
 const tasks = [
   {
     description: 'wash the dishes',
     completed: false,
-    index: 0
+    index: 0,
   },
   {
     description: 'complete To Do list project',
     completed: false,
-    index: 1
+    index: 1,
   },
-  {description:
+  {
+    description:
     'finish python exercises',
     completed: true,
-    index: 2
+    index: 2,
   },
 ];
 
