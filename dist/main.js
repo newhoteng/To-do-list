@@ -10,6 +10,26 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"description\": () => (/* binding */ description),\n/* harmony export */   \"form\": () => (/* binding */ form),\n/* harmony export */   \"listOfTasks\": () => (/* binding */ listOfTasks)\n/* harmony export */ });\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_crud_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/crud.js */ \"./src/modules/crud.js\");\n\n\nvar listOfTasks = [];\n\n// {\n//   description: 'wash the dishes',\n//   completed: false,\n//   index: 0,\n// },\n// {\n//   description: 'complete To Do list project',\n//   completed: false,\n//   index: 1,\n// },\n// {\n//   description: 'finish python exercises',\n//   completed: true,\n//   index: 2,\n// },\n\n// get ul from index.html\nvar taskContainer = document.getElementById('list-items');\nlistOfTasks.forEach(function (task) {\n  var taskItem = document.createElement('li');\n  taskItem.classList.add('todo');\n  taskItem.innerHTML = \"\\n  <button class=\\\"checkbox\\\"></button>\\n  <p class=\\\"\\\">\".concat(task.description, \"</p>\\n  <div class=\\\"dots\\\">\\n    <span class=\\\"material-icons\\\">more_vert</span>\\n  </div>\\n  \");\n  taskContainer.appendChild(taskItem);\n});\nvar form = document.querySelector('#form');\nvar description = document.querySelector('#description').value;\n_modules_crud_js__WEBPACK_IMPORTED_MODULE_1__.addNewTask;\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/crud.js":
+/*!*****************************!*\
+  !*** ./src/modules/crud.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addNewTask\": () => (/* binding */ addNewTask)\n/* harmony export */ });\n/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ \"./src/index.js\");\n// create task object\n\nvar addNewTask = function addNewTask() {\n  _index_js__WEBPACK_IMPORTED_MODULE_0__.form.addEventListener('submit', function (e) {\n    e.preventDefault();\n    // if (description === '') {\n    //   return false\n    // }\n    var taskObject = {};\n    taskObject.description = _index_js__WEBPACK_IMPORTED_MODULE_0__.description;\n    taskObject.completed = false;\n    taskObject.index = _index_js__WEBPACK_IMPORTED_MODULE_0__.listOfTasks.length;\n    _index_js__WEBPACK_IMPORTED_MODULE_0__.listOfTasks.push(taskObject);\n\n    // if (title === '' || author === '') {\n    //   alert('Please fill in all fields'); // eslint-disable-line\n    // } else {\n    //   const book = new Book(title, author);\n\n    //   Ui.addbooktolist(book);\n\n    //   Store.addbook(book);\n\n    //   Ui.clearFields();\n    // }\n  });\n};\n\n//# sourceURL=webpack://to-do-list/./src/modules/crud.js?");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
@@ -108,16 +128,6 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj
 
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://to-do-list/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
 
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\nconst tasks = [\n  {\n    description: 'wash the dishes',\n    completed: false,\n    index: 0,\n  },\n  {\n    description: 'complete To Do list project',\n    completed: false,\n    index: 1,\n  },\n  {\n    description:\n    'finish python exercises',\n    completed: true,\n    index: 2,\n  },\n];\n\n// get ul from index.html\nconst taskContainer = document.getElementById('list-items');\n\ntasks.forEach((task) => {\n  const taskItem = document.createElement('li');\n  taskItem.classList.add('todo');\n  taskItem.innerHTML = `\n  <button class=\"checkbox\"></button>\n  <p class=\"\">${task.description}</p>\n  <div class=\"dots\">\n    <span class=\"material-icons\">more_vert</span>\n  </div>\n  `;\n  taskContainer.appendChild(taskItem);\n});\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
-
 /***/ })
 
 /******/ 	});
@@ -196,7 +206,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()
