@@ -28,8 +28,6 @@ export const addTaskToList = (task) => {
   ul.appendChild(taskItem);
 }
 
-// box.innerHTML = `<span class="material-icons checkmark">done</span>`
-
 // Using local storage
 export const getLocalStorage = () => {
   let tasks;
@@ -60,7 +58,7 @@ export const deleteTask = (index) => {
 
 export const editTask = (newtext, index) => {
   const tasks = getLocalStorage();
-  // if new text is empty delete coming up
+  // if new text is empty delete
   if (newtext == '') {
     deleteTask(index);
   } else {
@@ -80,15 +78,6 @@ export const markUnCompleted = (index) => {
   tasks[index].completed = false;
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
-
-// export const clearAllCompleted = () => {
-//   const tasks = getLocalStorage();
-//   for (let i = 0; i < tasks.length; i++) {
-//     if (tasks[i].completed == true) {
-
-//     }
-//   }
-// }
 
 
 

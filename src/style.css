@@ -117,7 +117,7 @@ form button {
 
 .checkmark {
   position: absolute;
-  color:  #2e8ae6;
+  color: #2e8ae6;
 }
 
 .todo p {
@@ -126,11 +126,10 @@ form button {
   word-wrap: break-word;
   flex: 1;
   outline: none;
-  border: 1px solid red;
 }
 
 .completed + .desc {
-  color: rgba(0,0,0,0.45);
+  color: rgba(0, 0, 0, 0.45);
   text-decoration: line-through;
 }
 
@@ -154,12 +153,11 @@ form button {
   align-items: center;
   cursor: pointer;
   opacity: 0.5;
-  /* position: absolute; */
+  position: absolute;
   top: 0;
   right: 0;
   padding: 0 1rem;
   z-index: 0;
-  border: 1px solid red;
 }
 
 .todo .bin:hover {

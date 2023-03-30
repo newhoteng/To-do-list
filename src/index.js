@@ -1,7 +1,6 @@
 import './style.css';
 import { addNewTask, addTaskToList, getLocalStorage, displayTasks, markCompleted, markUnCompleted, editTask, deleteTask } from './modules/crud.js'
 
-// localStorage.clear();
 document.addEventListener('DOMContentLoaded', displayTasks);
 
 
@@ -17,7 +16,6 @@ document.querySelector('#form').addEventListener('submit', (e) => {
     return
   }
   const newTask = {};
-  // const storage = getLocalStorage();
   newTask.description = description;
   newTask.completed = false;
   newTask.index = getLocalStorage().length + 1;
@@ -26,16 +24,6 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   document.querySelector('#description').value = '';
   window.location.reload();
 });
-
-// const binIcons = document.getElementsByClassName('delete-bin');
-
-
-// for (let i = 0; i < binIcons.length; i++) {
-//   let bin = binIcons[i];
-//   bin.addEventListener('click', () => {
-//     console.log(binIcons);
-//   })
-// }
 
 
 window.onload = () => { 
@@ -89,12 +77,6 @@ window.onload = () => {
       // update description in storage
       const newText = e.target.innerHTML;
       editTask(newText, i);
-      
-      // const tasks = getLocalStorage();
-      // const newText = e.target.innerHTML;
-      // // if new text is empty delete coming up
-      // tasks[i].description = newText;
-      // localStorage.setItem('tasks', JSON.stringify(tasks));
     })
 
     desc.addEventListener('keypress', (e) => {
@@ -104,16 +86,6 @@ window.onload = () => {
         e.target.parentElement.style.background = '';
         e.target.nextElementSibling.style.display = 'flex';
         e.target.nextElementSibling.nextElementSibling.style.display = 'none'
-
-        // update description in storage
-        // const newText = e.target.innerHTML;
-        // editTask(newText, i);
-
-        // const tasks = getLocalStorage();
-        // const newText = e.target.innerHTML;
-        // // if new text is empty delete coming up
-        // tasks[i].description = newText;
-        // localStorage.setItem('tasks', JSON.stringify(tasks));
 
         desc.blur();
       }
