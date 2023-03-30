@@ -1,16 +1,42 @@
 import './style.css';
-/* eslint-disable import/no-cycle */
 import {
-  addNewTask, addTaskToList, getLocalStorage, displayTasks,
+  addNewTask, getLocalStorage,
 
   markCompleted, markUnCompleted, editTask, deleteTask,
 } from './modules/crud.js';
 
-document.addEventListener('DOMContentLoaded', displayTasks);
-
 // get ul from index.html
-let ul; /* eslint-disable no-unused-vars */
-export default ul = document.getElementById('list-items');
+const ul = document.getElementById('list-items');
+
+const addTaskToList = (task) => {
+  const taskItem = document.createElement('li');
+  let checkmark;
+  let completedClass;
+  if (task.completed === true) {
+    checkmark = '<span class="material-icons checkmark">done</span>';
+    completedClass = 'completed';
+  }
+  taskItem.classList.add('todo');
+  taskItem.innerHTML = `
+  <button type="button" class="checkbox ${completedClass}" id=${task.index}>${checkmark}</button>
+  <p contentEditable="true" class="desc">${task.description}</p>
+  <div class="dots">
+    <span class="material-icons">more_vert</span>
+  </div>
+  <div class="bin">
+    <span class="material-symbols-outlined delete-bin">delete</span>
+  </div>
+  `;
+
+  ul.appendChild(taskItem);
+};
+
+const displayTasks = () => {
+  const tasks = getLocalStorage();
+  tasks.forEach((task) => addTaskToList(task));
+};
+
+document.addEventListener('DOMContentLoaded', displayTasks);
 
 document.querySelector('#form').addEventListener('submit', (e) => {
   e.preventDefault();
