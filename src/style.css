@@ -126,6 +126,7 @@ form button {
   word-wrap: break-word;
   flex: 1;
   outline: none;
+  border: 1px solid red;
 }
 
 .completed + .desc {
@@ -149,15 +150,20 @@ form button {
 
 .todo .bin {
   height: 50px;
-  display: flex;
+  display: none;
   align-items: center;
   cursor: pointer;
   opacity: 0.5;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   right: 0;
   padding: 0 1rem;
-  display: none;
+  z-index: 0;
+  border: 1px solid red;
+}
+
+.todo .bin:hover {
+  opacity: 0.8;
 }
 
 .delete-bin {

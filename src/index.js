@@ -1,5 +1,5 @@
 import './style.css';
-import { addNewTask, addTaskToList, getLocalStorage, displayTasks, markCompleted, markUnCompleted } from './modules/crud.js'
+import { addNewTask, addTaskToList, getLocalStorage, displayTasks, markCompleted, markUnCompleted, editTask, deleteTask } from './modules/crud.js'
 
 // localStorage.clear();
 document.addEventListener('DOMContentLoaded', displayTasks);
@@ -27,8 +27,27 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   window.location.reload();
 });
 
+// const binIcons = document.getElementsByClassName('delete-bin');
+
+
+// for (let i = 0; i < binIcons.length; i++) {
+//   let bin = binIcons[i];
+//   bin.addEventListener('click', () => {
+//     console.log(binIcons);
+//   })
+// }
+
 
 window.onload = () => { 
+
+  const binIcons = document.getElementsByClassName('delete-bin');
+
+  for (let i = 0; i < binIcons.length; i++) {
+    let bin = binIcons[i];
+    bin.addEventListener('click', (e) => {
+      deleteTask(i);
+    })
+  }
 
   const checkBoxes = document.getElementsByClassName('checkbox');
   const taskDescriptions = document.getElementsByClassName('desc');
@@ -58,19 +77,50 @@ window.onload = () => {
       e.target.nextElementSibling.style.display = 'none';
       e.target.nextElementSibling.nextElementSibling.style.display = 'flex';
     })
+
+    // will like combine blur and keypress in the future
     desc.addEventListener('blur', (e) => {
+      e.stopPropagation();
       e.target.style.textDecoration = '';
       e.target.parentElement.style.background = '';
       e.target.nextElementSibling.style.display = 'flex';
-      e.target.nextElementSibling.nextElementSibling.style.display = 'none'
+      e.target.nextElementSibling.nextElementSibling.style.display = 'flex'
 
       // update description in storage
-      const list = getLocalStorage();
+      const newText = e.target.innerHTML;
+      editTask(newText, i);
+      
+      // const tasks = getLocalStorage();
+      // const newText = e.target.innerHTML;
+      // // if new text is empty delete coming up
+      // tasks[i].description = newText;
+      // localStorage.setItem('tasks', JSON.stringify(tasks));
+    })
 
+    desc.addEventListener('keypress', (e) => {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        e.target.style.textDecoration = '';
+        e.target.parentElement.style.background = '';
+        e.target.nextElementSibling.style.display = 'flex';
+        e.target.nextElementSibling.nextElementSibling.style.display = 'none'
+
+        // update description in storage
+        // const newText = e.target.innerHTML;
+        // editTask(newText, i);
+
+        // const tasks = getLocalStorage();
+        // const newText = e.target.innerHTML;
+        // // if new text is empty delete coming up
+        // tasks[i].description = newText;
+        // localStorage.setItem('tasks', JSON.stringify(tasks));
+
+        desc.blur();
+      }
     })
   }
-
 }
+
 
 
 

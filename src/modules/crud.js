@@ -9,9 +9,13 @@ export const displayTasks = () => {
 
 export const addTaskToList = (task) => {
   const taskItem = document.createElement('li');
+  let checkmark;
+  if (task.completed == true) {
+    checkmark = `<span class="material-icons checkmark">done</span>`
+  }
   taskItem.classList.add('todo');
   taskItem.innerHTML = `
-  <button type="button" class="checkbox" id=${task.index}></button>
+  <button type="button" class="checkbox" id=${task.index}>${checkmark}</button>
   <p contentEditable="true" class="desc">${task.description}</p>
   <div class="dots">
     <span class="material-icons">more_vert</span>
@@ -20,8 +24,11 @@ export const addTaskToList = (task) => {
     <span class="material-symbols-outlined delete-bin">delete</span>
   </div>
   `;
+  
   ul.appendChild(taskItem);
 }
+
+// box.innerHTML = `<span class="material-icons checkmark">done</span>`
 
 // Using local storage
 export const getLocalStorage = () => {
@@ -40,8 +47,26 @@ export const addNewTask = (task) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-export const editTask = (index) => {
-  
+export const deleteTask = (index) => {
+  const tasks = getLocalStorage();
+  tasks.splice(index, 1);
+
+  for (let i = 0; i < tasks.length; i++) {
+    tasks[i].index = i + 1
+  }
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  window.location.reload();
+}
+
+export const editTask = (newtext, index) => {
+  const tasks = getLocalStorage();
+  // if new text is empty delete coming up
+  if (newtext == '') {
+    deleteTask(index);
+  } else {
+    tasks[index].description = newtext;
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  }  
 }
 
 export const markCompleted = (index) => {
