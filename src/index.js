@@ -20,10 +20,11 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   // const storage = getLocalStorage();
   newTask.description = description;
   newTask.completed = false;
-  newTask.index = getLocalStorage().length;
+  newTask.index = getLocalStorage().length + 1;
   addNewTask(newTask);
   addTaskToList(newTask);
   document.querySelector('#description').value = '';
+  window.location.reload();
 });
 
 
@@ -62,6 +63,10 @@ window.onload = () => {
       e.target.parentElement.style.background = '';
       e.target.nextElementSibling.style.display = 'flex';
       e.target.nextElementSibling.nextElementSibling.style.display = 'none'
+
+      // update description in storage
+      const list = getLocalStorage();
+
     })
   }
 

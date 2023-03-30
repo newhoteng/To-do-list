@@ -41,7 +41,7 @@ export const addNewTask = (task) => {
 }
 
 export const editTask = (index) => {
-
+  
 }
 
 export const markCompleted = (index) => {
@@ -56,24 +56,14 @@ export const markUnCompleted = (index) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-export const clearAllCompleted = () => {
-  const tasks = getLocalStorage();
-  for (let i = 0; i < tasks.length; i++) {
-    if (tasks[i].completed == true) {
+// export const clearAllCompleted = () => {
+//   const tasks = getLocalStorage();
+//   for (let i = 0; i < tasks.length; i++) {
+//     if (tasks[i].completed == true) {
 
-    }
-  }
-}
-
-
-// const mobileMenu = document.getElementById('hamburger-icon');
-
-// function toggleMobileMenu(menu) {
-//   menu.classList.toggle('open');
+//     }
+//   }
 // }
 
-// mobileMenu.addEventListener('click', () => {
-//   toggleMobileMenu(mobileMenu);
-// });
 
 
