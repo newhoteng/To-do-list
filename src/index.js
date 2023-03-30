@@ -1,6 +1,7 @@
 import './style.css';
 import { addNewTask, addTaskToList, getLocalStorage, displayTasks, markCompleted, markUnCompleted } from './modules/crud.js'
 
+// localStorage.clear();
 document.addEventListener('DOMContentLoaded', displayTasks);
 
 
@@ -23,12 +24,11 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   addNewTask(newTask);
   addTaskToList(newTask);
   document.querySelector('#description').value = '';
-  // console.log(listOfTasks);
 });
 
 
 window.onload = () => { 
-  
+
   const checkBoxes = document.getElementsByClassName('checkbox');
   const taskDescriptions = document.getElementsByClassName('desc');
     
@@ -66,4 +66,6 @@ window.onload = () => {
   }
 
 }
+
+
 
