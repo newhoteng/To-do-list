@@ -17,7 +17,7 @@ export const addTaskToList = (task) => {
   const taskItem = document.createElement('li');
   let checkmark;
   let completedClass;
-    if (task.completed === true) {
+  if (task.completed === true) {
     checkmark = '<span class="material-icons checkmark">done</span>';
     completedClass = 'completed';
   }
