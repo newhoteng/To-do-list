@@ -25,7 +25,6 @@ body {
 }
 
 .container {
-  /* border: 1px solid green; */
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
@@ -69,6 +68,7 @@ form input[type=text] {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+  outline: none;
 }
 
 form button {
@@ -106,12 +106,31 @@ form button {
   height: 16px;
   width: 16px;
   border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo .completed {
+  border: none;
+}
+
+.checkmark {
+  position: absolute;
+  color: #2e8ae6;
 }
 
 .todo p {
   padding: 15px 0;
   line-height: 20px;
   word-wrap: break-word;
+  flex: 1;
+  outline: none;
+}
+
+.completed + .desc {
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: line-through;
 }
 
 .todo .dots {
@@ -126,6 +145,28 @@ form button {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.todo .bin {
+  height: 50px;
+  display: none;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1rem;
+  z-index: 0;
+}
+
+.todo .bin:hover {
+  opacity: 0.8;
+}
+
+.delete-bin {
+  font-size: 25px;
+  color: #333;
 }
 
 .clear {

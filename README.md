@@ -9,9 +9,9 @@
     - [Key Features](#key-features)
   - [🚀 Live Demo](https://github.com/newhoteng/To-do-list/blob/main/README.md#rocket-live-demo)
 - [💻 Getting Started](https://github.com/newhoteng/To-do-list/blob/main/README.md#computer-getting-started)
-  - Prerequisites
-  - Setup
-  - Install
+  - [Prerequisites](https://github.com/newhoteng/To-do-list/blob/main/README.md#prerequisites)
+  - [Setup](https://github.com/newhoteng/To-do-list/blob/main/README.md#setup)
+  - [Install](https://github.com/newhoteng/To-do-list/blob/main/README.md#install)
 - [👥 Authors](https://github.com/newhoteng/To-do-list/blob/main/README.md#busts_in_silhouette-authors)
 - [🔭 Future Features](https://github.com/newhoteng/To-do-list/blob/main/README.md#telescope-future-features)
 - [🤝 Contributing](https://github.com/newhoteng/To-do-list/blob/main/README.md#handshake-contributing)
@@ -45,20 +45,20 @@
 ## :computer: Getting Started
 To get a local copy up and running, follow these steps.<br>
 
-**Prerequisites**<br>
+### Prerequisites
 
 In order to run this project you need:
 - Text editor
 - GitHub account<br>
 
-**Setup**<br>
+### Setup
 
 Clone this repository to your desired folder:<br>
 ```
 git clone https://github.com/newhoteng/To-do-list.git
 ```
 
-**Install**<br>
+### Install
 
 Install this project with:<br>
 ```
@@ -94,7 +94,8 @@ If you like this project follow me on GitHub.
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
 ## :pray: Acknowledgements
-
+- I would like to thank my coding partners [Abbas](https://github.com/AbbasSarwar) and [Martins](https://github.com/Abmart0803) for heloping out with fixing bugs.
+- Thanks to Microverse for inspiring me to do this project.
 
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
   
