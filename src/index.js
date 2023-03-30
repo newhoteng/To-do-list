@@ -1,41 +1,69 @@
 import './style.css';
-import { addNewTask } from './modules/crud.js';
+import { addNewTask, addTaskToList, getLocalStorage, displayTasks, markCompleted, markUnCompleted } from './modules/crud.js'
 
-export const listOfTasks = [];
+document.addEventListener('DOMContentLoaded', displayTasks);
 
-  // {
-  //   description: 'wash the dishes',
-  //   completed: false,
-  //   index: 0,
-  // },
-  // {
-  //   description: 'complete To Do list project',
-  //   completed: false,
-  //   index: 1,
-  // },
-  // {
-  //   description: 'finish python exercises',
-  //   completed: true,
-  //   index: 2,
-  // },
+
 
 // get ul from index.html
-const taskContainer = document.getElementById('list-items');
+export const ul = document.getElementById('list-items');
 
-listOfTasks.forEach((task) => {
-  const taskItem = document.createElement('li');
-  taskItem.classList.add('todo');
-  taskItem.innerHTML = `
-  <button class="checkbox"></button>
-  <p class="">${task.description}</p>
-  <div class="dots">
-    <span class="material-icons">more_vert</span>
-  </div>
-  `;
-  taskContainer.appendChild(taskItem);
+
+document.querySelector('#form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const description = document.querySelector('#description').value;
+  if (description == '') {
+    return
+  }
+  const newTask = {};
+  // const storage = getLocalStorage();
+  newTask.description = description;
+  newTask.completed = false;
+  newTask.index = getLocalStorage().length;
+  addNewTask(newTask);
+  addTaskToList(newTask);
+  document.querySelector('#description').value = '';
+  // console.log(listOfTasks);
 });
 
-export const form = document.querySelector('#form')
-export const description = document.querySelector('#description').value;
 
-addNewTask;
+window.onload = () => { 
+  
+  const checkBoxes = document.getElementsByClassName('checkbox');
+  const taskDescriptions = document.getElementsByClassName('desc');
+    
+  for (let i = 0; i < checkBoxes.length; i++) {
+    let box = checkBoxes[i];
+    box.addEventListener('click', () => {
+      box.classList.toggle('completed');
+      // let index = box.getAttribute('id');
+      const list = getLocalStorage();
+
+      if (box.classList.contains('completed')) {
+        markCompleted(i);
+        box.innerHTML = `<span class="material-icons checkmark">done</span>`;
+      } else {
+        markUnCompleted(i);
+        box.innerHTML = ``;
+      }
+    })
+  }
+
+  for (let i = 0; i < taskDescriptions.length; i++) {
+    let desc = taskDescriptions[i];
+    desc.addEventListener('focus', (e) => {
+      e.target.style.textDecoration = 'none';
+      e.target.parentElement.style.background = '#fffeca';
+      e.target.nextElementSibling.style.display = 'none';
+      e.target.nextElementSibling.nextElementSibling.style.display = 'flex';
+    })
+    desc.addEventListener('blur', (e) => {
+      e.target.style.textDecoration = '';
+      e.target.parentElement.style.background = '';
+      e.target.nextElementSibling.style.display = 'flex';
+      e.target.nextElementSibling.nextElementSibling.style.display = 'none'
+    })
+  }
+
+}
+
