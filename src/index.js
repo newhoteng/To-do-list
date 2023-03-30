@@ -33,7 +33,7 @@ window.onload = () => {
 
   for (let i = 0; i < binIcons.length; i += 1) {
     const bin = binIcons[i];
-    bin.addEventListener('click', () => {
+    bin.addEventListener('mousedown', () => {
       deleteTask(i);
     });
   }
