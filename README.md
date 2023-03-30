@@ -94,7 +94,8 @@ If you like this project follow me on GitHub.
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
 ## :pray: Acknowledgements
-
+- I would like to thank my coding partners [Abbas](https://github.com/AbbasSarwar) and [Martins](https://github.com/Abmart0803) for heloping out with a fixing bugs.
+- Thanks to Microverse for inspiring me to do this project.
 
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
   
