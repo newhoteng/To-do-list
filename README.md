@@ -41,7 +41,7 @@
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
 ## :rocket: Live Demo
-- coming soon
+- [To-do list app](https://newhoteng.github.io/To-do-list/)
 
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
