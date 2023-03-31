@@ -45,6 +45,11 @@ h2 {
   background-color: #fff;
 }
 
+.title {
+  outline: none;
+  min-height: 15px;
+}
+
 .material-symbols-outlined {
   font-size: 20px;
 }
