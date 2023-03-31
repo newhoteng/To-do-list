@@ -58,7 +58,7 @@ document.querySelector('#form').addEventListener('submit', (e) => {
 
 window.onload = () => {
   // event listener for bin icons
-  const binIcons = document.getElementsByClassName('delete-bin');
+  const binIcons = document.querySelectorAll('.delete-bin');
 
   for (let i = 0; i < binIcons.length; i += 1) {
     const bin = binIcons[i];

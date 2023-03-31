@@ -33,7 +33,10 @@
 </details>
 
 ### Key Features
-  - List structure
+  - Task input and display
+  - Add and remove task feature
+  - Mark as completed
+  - Clear all completed task feature
 
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
@@ -77,8 +80,7 @@ npm install
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
 ## :telescope: Future Features
-  - Interactive list feature
-  - Add and remove items feature
+  - Drag and move list items
 
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
