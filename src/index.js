@@ -1,9 +1,8 @@
 import './style.css';
 import {
-  addNewTask, getLocalStorage,
-
-  markCompleted, markUnCompleted, editTask, deleteTask,
+  addNewTask, getLocalStorage, editTask, deleteTask,
 } from './modules/crud.js';
+import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
 
 // get ul from index.html
 const ul = document.getElementById('list-items');
@@ -18,7 +17,7 @@ const addTaskToList = (task) => {
   }
   taskItem.classList.add('todo');
   taskItem.innerHTML = `
-  <button type="button" class="checkbox ${completedClass}" id=${task.index}>${checkmark}</button>
+  <button type="button" class="checkbox ${completedClass}" >${checkmark}</button>
   <p contentEditable="true" class="desc">${task.description}</p>
   <div class="dots">
     <span class="material-icons">more_vert</span>
@@ -36,11 +35,14 @@ const displayTasks = () => {
   tasks.forEach((task) => addTaskToList(task));
 };
 
+// Display local storage items on page
 document.addEventListener('DOMContentLoaded', displayTasks);
 
 document.querySelector('#form').addEventListener('submit', (e) => {
   e.preventDefault();
+
   const description = document.querySelector('#description').value;
+
   if (description === '') {
     return;
   }
@@ -55,6 +57,7 @@ document.querySelector('#form').addEventListener('submit', (e) => {
 });
 
 window.onload = () => {
+  // event listener for bin icons
   const binIcons = document.getElementsByClassName('delete-bin');
 
   for (let i = 0; i < binIcons.length; i += 1) {
@@ -64,8 +67,8 @@ window.onload = () => {
     });
   }
 
+  // event listener for checkboxes
   const checkBoxes = document.getElementsByClassName('checkbox');
-  const taskDescriptions = document.getElementsByClassName('desc');
 
   for (let i = 0; i < checkBoxes.length; i += 1) {
     const box = checkBoxes[i];
@@ -82,6 +85,9 @@ window.onload = () => {
     });
   }
 
+  // Event listener for task descriptions
+  const taskDescriptions = document.getElementsByClassName('desc');
+
   for (let i = 0; i < taskDescriptions.length; i += 1) {
     const desc = taskDescriptions[i];
     desc.addEventListener('focus', (e) => {
@@ -93,7 +99,6 @@ window.onload = () => {
 
     // will like combine blur and keypress in the future
     desc.addEventListener('blur', (e) => {
-      e.stopPropagation();
       e.target.style.textDecoration = '';
       e.target.parentElement.style.background = '';
       e.target.nextElementSibling.style.display = 'flex';
@@ -116,4 +121,9 @@ window.onload = () => {
       }
     });
   }
+
+  // Event listener for "clear all completed"
+  const clearButton = document.getElementById('clear');
+
+  clearButton.addEventListener('click', clearCompleted, false);
 };

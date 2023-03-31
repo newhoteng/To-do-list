@@ -84,6 +84,10 @@ form button {
   opacity: 0.2;
 }
 
+form button:hover {
+  opacity: 0.8;
+}
+
 .todo {
   position: relative;
   background-color: #fff;
@@ -175,4 +179,5 @@ form button {
   margin: 1rem auto;
   display: block;
   opacity: 0.5;
+  cursor: pointer;
 }

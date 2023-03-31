@@ -36,20 +36,3 @@ export const editTask = (newtext, index) => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 };
-
-// Interactive functions
-export const markCompleted = (index) => {
-  const tasks = getLocalStorage();
-  tasks[index].completed = true;
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-};
-
-export const markUnCompleted = (index) => {
-  const tasks = getLocalStorage();
-  tasks[index].completed = false;
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-};
-
-export const clearCompleted = () => {
-
-};
