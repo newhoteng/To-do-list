@@ -1,20 +1,48 @@
 import './style.css';
-/* eslint-disable import/no-cycle */
 import {
-  addNewTask, addTaskToList, getLocalStorage, displayTasks,
-
-  markCompleted, markUnCompleted, editTask, deleteTask,
+  addNewTask, getLocalStorage, editTask, deleteTask,
 } from './modules/crud.js';
-
-document.addEventListener('DOMContentLoaded', displayTasks);
+import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
 
 // get ul from index.html
-let ul; /* eslint-disable no-unused-vars */
-export default ul = document.getElementById('list-items');
+const ul = document.getElementById('list-items');
+
+const addTaskToList = (task) => {
+  const taskItem = document.createElement('li');
+  let checkmark;
+  let completedClass;
+  if (task.completed === true) {
+    checkmark = '<span class="material-icons checkmark">done</span>';
+    completedClass = 'completed';
+  }
+  taskItem.classList.add('todo');
+  taskItem.innerHTML = `
+  <button type="button" class="checkbox ${completedClass}" >${checkmark}</button>
+  <p contentEditable="true" class="desc">${task.description}</p>
+  <div class="dots">
+    <span class="material-icons">more_vert</span>
+  </div>
+  <div class="bin">
+    <span class="material-symbols-outlined delete-bin">delete</span>
+  </div>
+  `;
+
+  ul.appendChild(taskItem);
+};
+
+const displayTasks = () => {
+  const tasks = getLocalStorage();
+  tasks.forEach((task) => addTaskToList(task));
+};
+
+// Display local storage items on page
+document.addEventListener('DOMContentLoaded', displayTasks);
 
 document.querySelector('#form').addEventListener('submit', (e) => {
   e.preventDefault();
+
   const description = document.querySelector('#description').value;
+
   if (description === '') {
     return;
   }
@@ -29,7 +57,8 @@ document.querySelector('#form').addEventListener('submit', (e) => {
 });
 
 window.onload = () => {
-  const binIcons = document.getElementsByClassName('delete-bin');
+  // event listener for bin icons
+  const binIcons = document.querySelectorAll('.delete-bin');
 
   for (let i = 0; i < binIcons.length; i += 1) {
     const bin = binIcons[i];
@@ -38,8 +67,8 @@ window.onload = () => {
     });
   }
 
+  // event listener for checkboxes
   const checkBoxes = document.getElementsByClassName('checkbox');
-  const taskDescriptions = document.getElementsByClassName('desc');
 
   for (let i = 0; i < checkBoxes.length; i += 1) {
     const box = checkBoxes[i];
@@ -56,6 +85,9 @@ window.onload = () => {
     });
   }
 
+  // Event listener for task descriptions
+  const taskDescriptions = document.getElementsByClassName('desc');
+
   for (let i = 0; i < taskDescriptions.length; i += 1) {
     const desc = taskDescriptions[i];
     desc.addEventListener('focus', (e) => {
@@ -67,7 +99,6 @@ window.onload = () => {
 
     // will like combine blur and keypress in the future
     desc.addEventListener('blur', (e) => {
-      e.stopPropagation();
       e.target.style.textDecoration = '';
       e.target.parentElement.style.background = '';
       e.target.nextElementSibling.style.display = 'flex';
@@ -90,4 +121,9 @@ window.onload = () => {
       }
     });
   }
+
+  // Event listener for "clear all completed"
+  const clearButton = document.getElementById('clear');
+
+  clearButton.addEventListener('click', clearCompleted, false);
 };
