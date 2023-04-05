@@ -3,11 +3,14 @@ import {
   addNewTask, getLocalStorage, editTask, deleteTask,
 } from './modules/crud.js';
 import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
+import { bind } from 'lodash';
 
 // get ul from index.html
-const ul = document.getElementById('list-items');
+// localStorage.clear()
+
 
 const addTaskToList = (task) => {
+  const ul = document.getElementById('list-items');
   const taskItem = document.createElement('li');
   let checkmark;
   let completedClass;
@@ -17,12 +20,12 @@ const addTaskToList = (task) => {
   }
   taskItem.classList.add('todo');
   taskItem.innerHTML = `
-  <button type="button" class="checkbox ${completedClass}" >${checkmark}</button>
+  <button type="button" id="${task.index}" class="checkbox ${completedClass}" >${checkmark}</button>
   <p contentEditable="true" class="desc">${task.description}</p>
   <div class="dots">
     <span class="material-icons">more_vert</span>
   </div>
-  <div class="bin">
+  <div class="bin ">
     <span class="material-symbols-outlined delete-bin">delete</span>
   </div>
   `;
@@ -56,74 +59,51 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   window.location.reload();
 });
 
-window.onload = () => {
-  // event listener for bin icons
-  const binIcons = document.querySelectorAll('.delete-bin');
+// get ul from index.html
+const ul = document.getElementById('list-items');
 
-  for (let i = 0; i < binIcons.length; i += 1) {
-    const bin = binIcons[i];
-    bin.addEventListener('mousedown', () => {
-      deleteTask(i);
-    });
-  }
+ul.addEventListener('mousedown', (e) => {
 
-  // event listener for checkboxes
-  const checkBoxes = document.getElementsByClassName('checkbox');
+  const taskDescription = e.target.closest('.desc');
+  
+  taskDescription.addEventListener('focus', () => {
+    taskDescription.style.textDecoration = 'none';
+    taskDescription.parentElement.style.background = '#fffeca';
+    taskDescription.nextElementSibling.style.display = 'none';
+    taskDescription.nextElementSibling.nextElementSibling.style.display = 'flex';
+  });
 
-  for (let i = 0; i < checkBoxes.length; i += 1) {
-    const box = checkBoxes[i];
-    box.addEventListener('click', () => {
-      box.classList.toggle('completed');
+  // will like combine blur and keypress in the future
+  taskDescription.addEventListener('blur', () => {
+    taskDescription.style.textDecoration = '';
+    taskDescription.parentElement.style.background = '';
+    taskDescription.nextElementSibling.style.display = 'flex';
+    taskDescription.nextElementSibling.nextElementSibling.style.display = '';
 
-      if (box.classList.contains('completed')) {
-        markCompleted(i);
-        box.innerHTML = '<span class="material-icons checkmark">done</span>';
-      } else {
-        markUnCompleted(i);
-        box.innerHTML = '';
-      }
-    });
-  }
+    // update description in storage by getting index from button id
+    const newText = taskDescription.innerHTML;
+    console.log(newText);
+    const index = taskDescription.previousElementSibling.getAttribute('id');
+    // console.log(taskDescription.previousElementSibling);
+    editTask(newText, index);
+  });
 
-  // Event listener for task descriptions
-  const taskDescriptions = document.getElementsByClassName('desc');
+  taskDescription.addEventListener('keypress', (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      taskDescription.style.textDecoration = '';
+      taskDescription.parentElement.style.background = '';
+      taskDescription.nextElementSibling.style.display = 'flex';
+      taskDescription.nextElementSibling.nextElementSibling.style.display = 'none';
 
-  for (let i = 0; i < taskDescriptions.length; i += 1) {
-    const desc = taskDescriptions[i];
-    desc.addEventListener('focus', (e) => {
-      e.target.style.textDecoration = 'none';
-      e.target.parentElement.style.background = '#fffeca';
-      e.target.nextElementSibling.style.display = 'none';
-      e.target.nextElementSibling.nextElementSibling.style.display = 'flex';
-    });
+      taskDescription.blur();
+    }
+  });
 
-    // will like combine blur and keypress in the future
-    desc.addEventListener('blur', (e) => {
-      e.target.style.textDecoration = '';
-      e.target.parentElement.style.background = '';
-      e.target.nextElementSibling.style.display = 'flex';
-      e.target.nextElementSibling.nextElementSibling.style.display = '';
+})
 
-      // update description in storage
-      const newText = e.target.innerHTML;
-      editTask(newText, i);
-    });
 
-    desc.addEventListener('keypress', (e) => {
-      if (e.keyCode === 13) {
-        e.preventDefault();
-        e.target.style.textDecoration = '';
-        e.target.parentElement.style.background = '';
-        e.target.nextElementSibling.style.display = 'flex';
-        e.target.nextElementSibling.nextElementSibling.style.display = 'none';
+// Event listener for "clear all completed"
+const clearButton = document.getElementById('clear');
 
-        desc.blur();
-      }
-    });
-  }
-
-  // Event listener for "clear all completed"
-  const clearButton = document.getElementById('clear');
-
-  clearButton.addEventListener('click', clearCompleted, false);
-};
+clearButton.addEventListener('click', clearCompleted, false);
