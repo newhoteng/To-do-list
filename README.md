@@ -26,7 +26,7 @@
 - [📝 License](https://github.com/newhoteng/To-do-list/blob/main/README.md#memo-license)
 
 #  :open_book: To-do-list
-**To-do-list** is a simple 'To-do-list' app that allows users to add, check-off and delete daily activities. It is build with HTML, CSS, JavaScript and packaged with with webpack
+**To-do-list** is a simple 'To-do-list' app that allows users to add, check-off and delete daily activities. It is build with HTML, CSS, JavaScript and packaged with webpack
 
 ## :hammer_and_wrench: Build With
 ### Tech Stack
