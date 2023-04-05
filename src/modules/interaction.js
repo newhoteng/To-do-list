@@ -1,19 +1,19 @@
-import { getLocalStorage } from './crud.js';
+import { tasks } from './crud.js';
 // Interactive functions
 export const markCompleted = (index) => {
-  const tasks = getLocalStorage();
+  // const tasks = getLocalStorage();
   tasks[index].completed = true;
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 export const markUnCompleted = (index) => {
-  const tasks = getLocalStorage();
+  // const tasks = getLocalStorage();
   tasks[index].completed = false;
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 export const clearCompleted = () => {
-  const tasks = getLocalStorage();
+  // const tasks = getLocalStorage();
   const newtasks = tasks.filter((task) => task.completed === false);
 
   for (let i = 0; i < newtasks.length; i += 1) {

@@ -1,6 +1,6 @@
 import './style.css';
 import {
-  addNewTask, getLocalStorage, editTask, deleteTask,
+  addNewTask, tasks, editTask, deleteTask,
 } from './modules/crud.js';
 import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
 import { bind } from 'lodash';
@@ -33,13 +33,13 @@ const addTaskToList = (task) => {
   ul.appendChild(taskItem);
 };
 
-const displayTasks = () => {
-  const tasks = getLocalStorage();
+const displayTasks = (tasks) => {
+  // const tasks = tasks;
   tasks.forEach((task) => addTaskToList(task));
 };
 
 // Display local storage items on page
-document.addEventListener('DOMContentLoaded', displayTasks);
+// document.addEventListener('DOMContentLoaded', displayTasks(tasks));
 
 document.querySelector('#form').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -52,15 +52,29 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   const newTask = {};
   newTask.description = description;
   newTask.completed = false;
-  newTask.index = getLocalStorage().length + 1;
+  newTask.index = tasks.length + 1;
   addNewTask(newTask);
   addTaskToList(newTask);
   document.querySelector('#description').value = '';
-  window.location.reload();
+  // window.location.reload();
 });
+
+
 
 // get ul from index.html
 const ul = document.getElementById('list-items');
+
+document.addEventListener('DOMContentLoaded', () => {
+  displayTasks(tasks)
+  
+  const desc = document.querySelectorAll('.desc');
+  const but = document.querySelectorAll('.checkbox');
+  const bins = document.querySelectorAll('.delete-bin');
+
+  console.log(desc[3]);
+  console.log(but);
+  console.log(bins);
+});
 
 ul.addEventListener('mousedown', (e) => {
 
@@ -82,9 +96,9 @@ ul.addEventListener('mousedown', (e) => {
 
     // update description in storage by getting index from button id
     const newText = taskDescription.innerHTML;
-    console.log(newText);
+    // console.log(newText);
     const index = taskDescription.previousElementSibling.getAttribute('id');
-    // console.log(taskDescription.previousElementSibling);
+    
     editTask(newText, index);
   });
 
