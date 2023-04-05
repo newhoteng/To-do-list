@@ -5,9 +5,10 @@ import {
 import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
 
 // get ul from index.html
-const ul = document.getElementById('list-items');
+
 
 const addTaskToList = (task) => {
+  const ul = document.getElementById('list-items');
   const taskItem = document.createElement('li');
   let checkmark;
   let completedClass;
@@ -30,13 +31,13 @@ const addTaskToList = (task) => {
   ul.appendChild(taskItem);
 };
 
-const displayTasks = () => {
-  const tasks = getLocalStorage();
+const tasks = getLocalStorage();
+const displayTasks = (tasks) => {
   tasks.forEach((task) => addTaskToList(task));
 };
 
 // Display local storage items on page
-document.addEventListener('DOMContentLoaded', displayTasks);
+document.addEventListener('DOMContentLoaded', displayTasks(tasks));
 
 document.querySelector('#form').addEventListener('submit', (e) => {
   e.preventDefault();
