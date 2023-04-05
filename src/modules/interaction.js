@@ -20,5 +20,5 @@ export const clearCompleted = () => {
     newtasks[i].index = i + 1;
   }
   localStorage.setItem('tasks', JSON.stringify(newtasks));
-  window.location.reload();
+  // window.location.reload();
 };

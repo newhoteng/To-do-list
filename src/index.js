@@ -56,7 +56,7 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   addNewTask(newTask);
   addTaskToList(newTask);
   document.querySelector('#description').value = '';
-  // window.location.reload();
+  window.location.reload();
 });
 
 
@@ -67,54 +67,77 @@ const ul = document.getElementById('list-items');
 document.addEventListener('DOMContentLoaded', () => {
   displayTasks(tasks)
   
-  const desc = document.querySelectorAll('.desc');
-  const but = document.querySelectorAll('.checkbox');
-  const bins = document.querySelectorAll('.delete-bin');
+  const taskDescriptions = document.querySelectorAll('.desc');
+  const checkBoxes = document.querySelectorAll('.checkbox');
+  const binIcons = document.querySelectorAll('.delete-bin');
 
-  console.log(desc[3]);
-  console.log(but);
-  console.log(bins);
+  console.log(taskDescriptions[3]);
+  console.log(checkBoxes);
+  console.log(binIcons);
+
+  // event listener for bin icons
+  for (let i = 0; i < binIcons.length; i += 1) {
+    const bin = binIcons[i];
+    bin.addEventListener('mousedown', () => {
+      deleteTask(i);
+    });
+  }
+
+  // event listener for checkboxes
+  // const checkBoxes = document.getElementsByClassName('checkbox');
+  for (let i = 0; i < checkBoxes.length; i += 1) {
+    const box = checkBoxes[i];
+    box.addEventListener('click', () => {
+      box.classList.toggle('completed');
+
+      if (box.classList.contains('completed')) {
+        markCompleted(i);
+        box.innerHTML = '<span class="material-icons checkmark">done</span>';
+      } else {
+        markUnCompleted(i);
+        box.innerHTML = '';
+      }
+    });
+  }
+
+  // Event listener for task descriptions
+  // const taskDescriptions = document.getElementsByClassName('desc');
+
+  for (let i = 0; i < taskDescriptions.length; i += 1) {
+    const desc = taskDescriptions[i];
+    desc.addEventListener('focus', (e) => {
+      e.target.style.textDecoration = 'none';
+      e.target.parentElement.style.background = '#fffeca';
+      e.target.nextElementSibling.style.display = 'none';
+      e.target.nextElementSibling.nextElementSibling.style.display = 'flex';
+    });
+
+    // will like combine blur and keypress in the future
+    desc.addEventListener('blur', (e) => {
+      e.target.style.textDecoration = '';
+      e.target.parentElement.style.background = '';
+      e.target.nextElementSibling.style.display = 'flex';
+      e.target.nextElementSibling.nextElementSibling.style.display = '';
+
+      // update description in storage
+      const newText = e.target.innerHTML;
+      editTask(newText, i);
+    });
+
+    desc.addEventListener('keypress', (e) => {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        e.target.style.textDecoration = '';
+        e.target.parentElement.style.background = '';
+        e.target.nextElementSibling.style.display = 'flex';
+        e.target.nextElementSibling.nextElementSibling.style.display = 'none';
+
+        desc.blur();
+      }
+    });
+  }
+
 });
-
-ul.addEventListener('mousedown', (e) => {
-
-  const taskDescription = e.target.closest('.desc');
-  
-  taskDescription.addEventListener('focus', () => {
-    taskDescription.style.textDecoration = 'none';
-    taskDescription.parentElement.style.background = '#fffeca';
-    taskDescription.nextElementSibling.style.display = 'none';
-    taskDescription.nextElementSibling.nextElementSibling.style.display = 'flex';
-  });
-
-  // will like combine blur and keypress in the future
-  taskDescription.addEventListener('blur', () => {
-    taskDescription.style.textDecoration = '';
-    taskDescription.parentElement.style.background = '';
-    taskDescription.nextElementSibling.style.display = 'flex';
-    taskDescription.nextElementSibling.nextElementSibling.style.display = '';
-
-    // update description in storage by getting index from button id
-    const newText = taskDescription.innerHTML;
-    // console.log(newText);
-    const index = taskDescription.previousElementSibling.getAttribute('id');
-    
-    editTask(newText, index);
-  });
-
-  taskDescription.addEventListener('keypress', (e) => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      taskDescription.style.textDecoration = '';
-      taskDescription.parentElement.style.background = '';
-      taskDescription.nextElementSibling.style.display = 'flex';
-      taskDescription.nextElementSibling.nextElementSibling.style.display = 'none';
-
-      taskDescription.blur();
-    }
-  });
-
-})
 
 
 // Event listener for "clear all completed"
