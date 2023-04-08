@@ -52,7 +52,6 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   addNewTask(newTask);
   addTaskToList(newTask);
   document.querySelector('#description').value = '';
-  // window.location.reload();
 });
 
 const ul = document.getElementById('list-items');
@@ -62,7 +61,8 @@ ul.addEventListener('input', (e) => {
     // update description in storage
     const newText = e.target.innerHTML;
     let index = e.target.previousElementSibling.getAttribute('id');
-    editTask(newText, index);
+    let li = e.target.parentElement;
+    editTask(newText, index, li);
   }
 })
 
@@ -94,19 +94,11 @@ ul.addEventListener('click', (e) => {
 ul.addEventListener('mousedown', (e) => {
   if (e.target.matches('.delete-bin')) {
     let index = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.getAttribute('id');
-    console.log(index);
+    let li = e.target.parentElement.parentElement;
     deleteTask(index);
+    li.remove()
   }
 })
-
-const binIcons = document.querySelectorAll('.delete-bin');
-
-  for (let i = 0; i < binIcons.length; i += 1) {
-    const bin = binIcons[i];
-    bin.addEventListener('mousedown', () => {
-      deleteTask(i);
-    });
-  }
 
 // <span class="material-icons checkmark">done</span>
 
