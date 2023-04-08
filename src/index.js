@@ -10,16 +10,20 @@ const addTaskToList = (task) => {
   const taskItem = document.createElement('li');
   let completedClass;
   let checkboxBorder;
+  let descDecoration;
+  let descColor;
   if (task.completed === true) {
     completedClass = 'completed';
     checkboxBorder = 'none';
+    descDecoration = 'line-through';
+    descColor = 'rgba(0, 0, 0, 0.45)';
   } else {
     checkboxBorder = '';
   }
   taskItem.classList.add('todo');
   taskItem.innerHTML = `
   <button type="button" id=${task.index} class="checkbox" style="border: ${checkboxBorder}"><span class="material-icons checkmark ${completedClass}">done</span></button>
-  <p contentEditable="true" class="desc">${task.description}</p>
+  <p contentEditable="true" class="desc" style="text-decoration: ${descDecoration}; color: ${descColor}">${task.description}</p>
   <div class="dots">
     <span class="material-icons">more_vert</span>
   </div>
