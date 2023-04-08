@@ -96,13 +96,12 @@ form button:hover {
 .todo {
   position: relative;
   background-color: #fff;
-  padding-left: 1rem;
   font-size: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   font-weight: 300;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  /* background-color: transparent; */
 }
 
 .todo .checkbox {
@@ -118,19 +117,26 @@ form button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 1rem;
+  /* border: 1px solid red; */
 }
 
-.todo .completed {
+/* .todo .completed {
   border: none;
-}
+} */
 
 .checkmark {
   position: absolute;
+  color: transparent;
+}
+
+.checkmark.completed{
   color: #2e8ae6;
 }
 
 .todo p {
-  padding: 15px 0;
+  padding: 15px 0 15px 46px;
   line-height: 20px;
   word-wrap: break-word;
   flex: 1;

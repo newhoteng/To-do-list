@@ -3,20 +3,18 @@ import {
   addNewTask, getLocalStorage, editTask, deleteTask,
 } from './modules/crud.js';
 import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
-// localStorage.clear()
+// localStorage.clear() 
 
 const addTaskToList = (task) => {
   const ul = document.getElementById('list-items');
   const taskItem = document.createElement('li');
-  // let checkmark;
-  // let completedClass;
-  // if (task.completed === true) {
-  //   checkmark = '<span class="material-icons checkmark">done</span>';
-  //   completedClass = 'completed';
-  // } ${completedClass} ${checkmark}
+  let completedClass;
+  if (task.completed === true) {
+    completedClass = 'completed';
+  }  
   taskItem.classList.add('todo');
   taskItem.innerHTML = `
-  <button type="button" id=${task.index} class="checkbox "></button>
+  <button type="button" id=${task.index} class="checkbox ${completedClass}"><span class="material-icons checkmark">done</span></button>
   <p contentEditable="true" class="desc">${task.description}</p>
   <div class="dots">
     <span class="material-icons">more_vert</span>
@@ -73,20 +71,22 @@ ul.addEventListener('keypress', (e) => {
   }
 })
 
-// event listener for checkboxes
+
+// event listener for checkmark
 ul.addEventListener('click', (e) => {
-  if (e.target.matches('.checkbox')) {
+  if (e.target.matches('.checkmark')) {
     e.target.classList.toggle('completed');
 
-    let index = e.target.getAttribute('id');
-    console.log(e.target);
+    let index = e.target.parentElement.getAttribute('id');
+    console.log(index);
     if (e.target.classList.contains('completed')) {
-      // console.log('completed')
-      e.target.innerHTML = 'done';
+      e.target.parentElement.style.border = 'none';
+      e.target.parentElement.nextElementSibling.style.textDecoration = 'line-through'
       markCompleted(index);
     } else {
+      e.target.parentElement.style.border = '';
+      e.target.parentElement.nextElementSibling.style.textDecoration = 'none'
       markUnCompleted(index);
-      e.target.innerHTML = '';
     }
   }
 })
@@ -100,9 +100,6 @@ ul.addEventListener('mousedown', (e) => {
   }
 })
 
-// <span class="material-icons checkmark">done</span>
-
 // Event listener for "clear all completed"
 const clearButton = document.getElementById('clear');
-
 clearButton.addEventListener('click', clearCompleted, false);
