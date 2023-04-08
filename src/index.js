@@ -9,12 +9,16 @@ const addTaskToList = (task) => {
   const ul = document.getElementById('list-items');
   const taskItem = document.createElement('li');
   let completedClass;
+  let checkboxBorder;
   if (task.completed === true) {
     completedClass = 'completed';
-  }  
+    checkboxBorder = 'none'
+  } else {
+    checkboxBorder = ''
+  }
   taskItem.classList.add('todo');
   taskItem.innerHTML = `
-  <button type="button" id=${task.index} class="checkbox ${completedClass}"><span class="material-icons checkmark">done</span></button>
+  <button type="button" id=${task.index} class="checkbox" style="border: ${checkboxBorder}"><span class="material-icons checkmark ${completedClass}">done</span></button>
   <p contentEditable="true" class="desc">${task.description}</p>
   <div class="dots">
     <span class="material-icons">more_vert</span>
@@ -81,11 +85,13 @@ ul.addEventListener('click', (e) => {
     console.log(index);
     if (e.target.classList.contains('completed')) {
       e.target.parentElement.style.border = 'none';
-      e.target.parentElement.nextElementSibling.style.textDecoration = 'line-through'
+      e.target.parentElement.nextElementSibling.style.textDecoration = 'line-through';
+      e.target.parentElement.nextElementSibling.style.color = 'rgba(0, 0, 0, 0.45)'
       markCompleted(index);
     } else {
       e.target.parentElement.style.border = '';
-      e.target.parentElement.nextElementSibling.style.textDecoration = 'none'
+      e.target.parentElement.nextElementSibling.style.textDecoration = 'none';
+      e.target.parentElement.nextElementSibling.style.color = '';
       markUnCompleted(index);
     }
   }

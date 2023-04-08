@@ -143,10 +143,10 @@ form button:hover {
   outline: none;
 }
 
-.completed + .desc {
+/* .completed + .desc {
   color: rgba(0, 0, 0, 0.45);
   text-decoration: line-through;
-}
+} */
 
 .desc:focus {
   text-decoration: none;
