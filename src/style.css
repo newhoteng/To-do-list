@@ -96,13 +96,11 @@ form button:hover {
 .todo {
   position: relative;
   background-color: #fff;
-  padding-left: 1rem;
   font-size: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   font-weight: 300;
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 
 .todo .checkbox {
@@ -118,42 +116,30 @@ form button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.todo .completed {
-  border: none;
+  position: absolute;
+  left: 1rem;
 }
 
 .checkmark {
   position: absolute;
+  color: transparent;
+}
+
+.checkmark.completed {
   color: #2e8ae6;
 }
 
 .todo p {
-  padding: 15px 0;
+  padding: 15px 0 15px 46px;
   line-height: 20px;
   word-wrap: break-word;
   flex: 1;
   outline: none;
 }
 
-.completed + .desc {
-  color: rgba(0, 0, 0, 0.45);
-  text-decoration: line-through;
-}
-
-.todo .dots {
-  opacity: 0.2;
-  padding: 0 0.5rem;
-  height: 50px;
-  line-height: 0;
-  cursor: move;
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
+.desc:focus {
+  text-decoration: none;
+  background-color: #fffeca;
 }
 
 .todo .bin {
@@ -171,6 +157,28 @@ form button:hover {
 
 .todo .bin:hover {
   opacity: 0.8;
+}
+
+.desc:focus + .dots + .bin {
+  display: flex;
+}
+
+.todo .dots {
+  opacity: 0.2;
+  padding: 0 0.5rem;
+  height: 50px;
+  line-height: 0;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.desc:focus + .dots {
+  display: none;
 }
 
 .delete-bin {

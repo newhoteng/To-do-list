@@ -17,22 +17,22 @@ export const addNewTask = (task) => {
 
 export const deleteTask = (index) => {
   const tasks = getLocalStorage();
-  tasks.splice(index, 1);
+  tasks.splice(index - 1, 1);
 
   for (let i = 0; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
   }
   localStorage.setItem('tasks', JSON.stringify(tasks));
-  window.location.reload();
 };
 
-export const editTask = (newtext, index) => {
+export const editTask = (newtext, index, li) => {
   const tasks = getLocalStorage();
   // if new text is empty delete
   if (newtext === '') {
     deleteTask(index);
+    li.remove();
   } else {
-    tasks[index].description = newtext;
+    tasks[index - 1].description = newtext;
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 };

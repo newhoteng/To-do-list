@@ -2,13 +2,13 @@ import { getLocalStorage } from './crud.js';
 // Interactive functions
 export const markCompleted = (index) => {
   const tasks = getLocalStorage();
-  tasks[index].completed = true;
+  tasks[index - 1].completed = true;
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 export const markUnCompleted = (index) => {
   const tasks = getLocalStorage();
-  tasks[index].completed = false;
+  tasks[index - 1].completed = false;
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
