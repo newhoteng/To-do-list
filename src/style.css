@@ -101,7 +101,6 @@ form button:hover {
   font-weight: 300;
   display: flex;
   align-items: center;
-  /* background-color: transparent; */
 }
 
 .todo .checkbox {
@@ -119,19 +118,14 @@ form button:hover {
   justify-content: center;
   position: absolute;
   left: 1rem;
-  /* border: 1px solid red; */
 }
-
-/* .todo .completed {
-  border: none;
-} */
 
 .checkmark {
   position: absolute;
   color: transparent;
 }
 
-.checkmark.completed{
+.checkmark.completed {
   color: #2e8ae6;
 }
 
@@ -143,18 +137,26 @@ form button:hover {
   outline: none;
 }
 
-/* .completed + .desc {
-  color: rgba(0, 0, 0, 0.45);
-  text-decoration: line-through;
-} */
-
 .desc:focus {
   text-decoration: none;
   background-color: #fffeca;
 }
 
-.desc:focus + .dots {
+.todo .bin {
+  height: 50px;
   display: none;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1rem;
+  z-index: 0;
+}
+
+.todo .bin:hover {
+  opacity: 0.8;
 }
 
 .desc:focus + .dots + .bin {
@@ -175,21 +177,8 @@ form button:hover {
   right: 0;
 }
 
-.todo .bin {
-  height: 50px;
+.desc:focus + .dots {
   display: none;
-  align-items: center;
-  cursor: pointer;
-  opacity: 0.5;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0 1rem;
-  z-index: 0;
-}
-
-.todo .bin:hover {
-  opacity: 0.8;
 }
 
 .delete-bin {

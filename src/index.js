@@ -3,7 +3,7 @@ import {
   addNewTask, getLocalStorage, editTask, deleteTask,
 } from './modules/crud.js';
 import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
-// localStorage.clear() 
+// localStorage.clear()
 
 const addTaskToList = (task) => {
   const ul = document.getElementById('list-items');
@@ -12,9 +12,9 @@ const addTaskToList = (task) => {
   let checkboxBorder;
   if (task.completed === true) {
     completedClass = 'completed';
-    checkboxBorder = 'none'
+    checkboxBorder = 'none';
   } else {
-    checkboxBorder = ''
+    checkboxBorder = '';
   }
   taskItem.classList.add('todo');
   taskItem.innerHTML = `
@@ -62,31 +62,29 @@ ul.addEventListener('input', (e) => {
   if (e.target.matches('.desc')) {
     // update description in storage
     const newText = e.target.innerHTML;
-    let index = e.target.previousElementSibling.getAttribute('id');
-    let li = e.target.parentElement;
+    const index = e.target.previousElementSibling.getAttribute('id');
+    const li = e.target.parentElement;
     editTask(newText, index, li);
   }
-})
+});
 
 ul.addEventListener('keypress', (e) => {
   if (e.target.matches('.desc') && e.keyCode === 13) {
     e.preventDefault();
     e.target.blur();
   }
-})
-
+});
 
 // event listener for checkmark
 ul.addEventListener('click', (e) => {
   if (e.target.matches('.checkmark')) {
     e.target.classList.toggle('completed');
 
-    let index = e.target.parentElement.getAttribute('id');
-    console.log(index);
+    const index = e.target.parentElement.getAttribute('id');
     if (e.target.classList.contains('completed')) {
       e.target.parentElement.style.border = 'none';
       e.target.parentElement.nextElementSibling.style.textDecoration = 'line-through';
-      e.target.parentElement.nextElementSibling.style.color = 'rgba(0, 0, 0, 0.45)'
+      e.target.parentElement.nextElementSibling.style.color = 'rgba(0, 0, 0, 0.45)';
       markCompleted(index);
     } else {
       e.target.parentElement.style.border = '';
@@ -95,16 +93,16 @@ ul.addEventListener('click', (e) => {
       markUnCompleted(index);
     }
   }
-})
+});
 
 ul.addEventListener('mousedown', (e) => {
   if (e.target.matches('.delete-bin')) {
-    let index = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.getAttribute('id');
-    let li = e.target.parentElement.parentElement;
+    const index = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.getAttribute('id');
+    const li = e.target.parentElement.parentElement;
     deleteTask(index);
-    li.remove()
+    li.remove();
   }
-})
+});
 
 // Event listener for "clear all completed"
 const clearButton = document.getElementById('clear');
