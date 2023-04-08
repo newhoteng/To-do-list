@@ -142,6 +142,19 @@ form button:hover {
   text-decoration: line-through;
 }
 
+.desc:focus {
+  text-decoration: none;
+  background-color: #fffeca;
+}
+
+.desc:focus + .dots {
+  display: none;
+}
+
+.desc:focus + .dots + .bin {
+  display: flex;
+}
+
 .todo .dots {
   opacity: 0.2;
   padding: 0 0.5rem;

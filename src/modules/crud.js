@@ -17,7 +17,7 @@ export const addNewTask = (task) => {
 
 export const deleteTask = (index) => {
   const tasks = getLocalStorage();
-  tasks.splice(index, 1);
+  tasks.splice(index - 1, 1);
 
   for (let i = 0; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
@@ -32,7 +32,7 @@ export const editTask = (newtext, index) => {
   if (newtext === '') {
     deleteTask(index);
   } else {
-    tasks[index].description = newtext;
+    tasks[index - 1].description = newtext;
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 };
