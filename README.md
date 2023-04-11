@@ -1,12 +1,3 @@
-<div align="center">
-  <br/>
-
-  <h3><b>To-do-List</b></h3>
-
-</div>
-
-<!-- TABLE OF CONTENTS -->
-
 # 📗 Table of Contents
 
 - [📖 About the Project](https://github.com/newhoteng/To-do-list/blob/main/README.md#open_book-awesome-books)
@@ -26,7 +17,7 @@
 - [📝 License](https://github.com/newhoteng/To-do-list/blob/main/README.md#memo-license)
 
 #  :open_book: To-do-list
-**To-do-list** is a simple 'To-do-list' app that allows users to add, check-off and delete daily activities. It is build with HTML, CSS, JavaScript and packaged with webpack
+**To-do-list** is a simple 'To-do-list' app that allows users to add, check-off and delete daily activities. It is built with HTML, CSS, JavaScript and packaged using webpack
 
 ## :hammer_and_wrench: Build With
 ### Tech Stack
