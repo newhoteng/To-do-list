@@ -1,31 +1,7 @@
 
-
-export const addTask = (task, displayContainer) => {
+export const addTask = (task) => {
   // Append to local storage
   let taskStorage = JSON.parse(localStorage.getItem('tasks')) || [];
   taskStorage.push(task);
   localStorage.setItem('tasks', JSON.stringify(taskStorage));
-
-  // Append to displayContainer
-  const li = document.createElement('li');
-  li.classList.add('todo');
-  li.setAttribute('id', task.index);
-
-  let checkmark;
-  let completedClass;
-  if (task.completed === true) {
-    checkmark = '<span class="material-icons checkmark">done</span>';
-    completedClass = 'completed';
-  }
-  li.innerHTML = `
-  <button type="button" id="${task.index}" class="checkbox ${completedClass}" >${checkmark}</button>
-  <p contentEditable="true" class="desc">${task.description}</p>
-  <div class="dots">
-    <span class="material-icons">more_vert</span>
-  </div>
-  <div class="bin ">
-    <span class="material-symbols-outlined delete-bin">delete</span>
-  </div>
-  `;
-  displayContainer.appendChild(li);
 };

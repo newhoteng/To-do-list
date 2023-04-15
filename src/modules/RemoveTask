@@ -1,0 +1,9 @@
+export const deleteTask = (taskIndex) => {
+  let taskStorage = JSON.parse(localStorage.getItem('tasks'));
+  taskStorage.splice((taskIndex - 1), 1);
+
+  taskStorage.forEach((task, index) => {
+    task.index = index + 1;
+  })
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+};
