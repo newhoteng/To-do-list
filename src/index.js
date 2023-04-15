@@ -64,16 +64,39 @@ document.querySelector('#form').addEventListener('submit', (e) => {
 // get ul from index.html
 const ul = document.getElementById('list-items');
 
+// event listener for focusin
+ul.addEventListener('focusin', (e) => {
+  if (e.target.matches('.desc')) {
+    console.log('it works')
+    e.target.style.textDecoration = 'none';
+    e.target.parentElement.style.background = '#fffeca';
+    e.target.nextElementSibling.style.display = 'none';
+    e.target.nextElementSibling.nextElementSibling.style.display = 'flex';
+  }
+});
+
+ul.addEventListener('focusout', (e) => {
+  if (e.target.matches('.desc')) {
+    console.log('does it work?')
+    e.target.style.textDecoration = '';
+    e.target.parentElement.style.background = '';
+    e.target.nextElementSibling.style.display = 'flex';
+    e.target.nextElementSibling.nextElementSibling.style.display = '';
+
+    // update description in storage
+    const newText = e.target.innerHTML;
+    editTask(newText, i);
+  }
+});
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   displayTasks(tasks)
   
   const taskDescriptions = document.querySelectorAll('.desc');
   const checkBoxes = document.querySelectorAll('.checkbox');
   const binIcons = document.querySelectorAll('.delete-bin');
-
-  console.log(taskDescriptions[3]);
-  console.log(checkBoxes);
-  console.log(binIcons);
 
   // event listener for bin icons
   for (let i = 0; i < binIcons.length; i += 1) {
@@ -105,24 +128,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   for (let i = 0; i < taskDescriptions.length; i += 1) {
     const desc = taskDescriptions[i];
-    desc.addEventListener('focus', (e) => {
-      e.target.style.textDecoration = 'none';
-      e.target.parentElement.style.background = '#fffeca';
-      e.target.nextElementSibling.style.display = 'none';
-      e.target.nextElementSibling.nextElementSibling.style.display = 'flex';
-    });
+    // desc.addEventListener('focus', (e) => {
+    //   e.target.style.textDecoration = 'none';
+    //   e.target.parentElement.style.background = '#fffeca';
+    //   e.target.nextElementSibling.style.display = 'none';
+    //   e.target.nextElementSibling.nextElementSibling.style.display = 'flex';
+    // });
 
     // will like combine blur and keypress in the future
-    desc.addEventListener('blur', (e) => {
-      e.target.style.textDecoration = '';
-      e.target.parentElement.style.background = '';
-      e.target.nextElementSibling.style.display = 'flex';
-      e.target.nextElementSibling.nextElementSibling.style.display = '';
+    // desc.addEventListener('blur', (e) => {
+    //   e.target.style.textDecoration = '';
+    //   e.target.parentElement.style.background = '';
+    //   e.target.nextElementSibling.style.display = 'flex';
+    //   e.target.nextElementSibling.nextElementSibling.style.display = '';
 
-      // update description in storage
-      const newText = e.target.innerHTML;
-      editTask(newText, i);
-    });
+    //   // update description in storage
+    //   const newText = e.target.innerHTML;
+    //   editTask(newText, i);
+    // });
 
     desc.addEventListener('keypress', (e) => {
       if (e.keyCode === 13) {
