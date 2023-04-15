@@ -1,7 +1,0 @@
-
-export const addTask = (task) => {
-  // Append to local storage
-  let taskStorage = JSON.parse(localStorage.getItem('tasks')) || [];
-  taskStorage.push(task);
-  localStorage.setItem('tasks', JSON.stringify(taskStorage));
-};

@@ -1,42 +1,58 @@
 import './style.css';
-import {
-  addNewTask, tasks, editTask, deleteTask,
-} from './modules/crud.js';
-import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
-import { bind } from 'lodash';
+import { Task } from './modules/task.js';
+import { addTask } from './modules/addTask.js';
+import { removeTask } from './modules/RemoveTask.js';
+
+// import {
+//   addNewTask, tasks, editTask, deleteTask,
+// } from './modules/crud.js';
+// import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
+// import { bind } from 'lodash';
+
+const taskStorage = JSON.parse(localStorage.getItem('tasks')) || [];
+
+// const ul = document.getElementById('list-items');
 
 // get ul from index.html
 // localStorage.clear()
 
+const displayTasks = (taskStorage, container) => {
 
-const addTaskToList = (task) => {
-  const ul = document.getElementById('list-items');
-  const taskItem = document.createElement('li');
-  let checkmark;
-  let completedClass;
-  if (task.completed === true) {
-    checkmark = '<span class="material-icons checkmark">done</span>';
-    completedClass = 'completed';
-  }
-  taskItem.classList.add('todo');
-  taskItem.innerHTML = `
-  <button type="button" id="${task.index}" class="checkbox ${completedClass}" >${checkmark}</button>
-  <p contentEditable="true" class="desc">${task.description}</p>
-  <div class="dots">
-    <span class="material-icons">more_vert</span>
-  </div>
-  <div class="bin ">
-    <span class="material-symbols-outlined delete-bin">delete</span>
-  </div>
-  `;
+  taskStorage.forEach(task => {
 
-  ul.appendChild(taskItem);
+    const li = document.createElement('li');
+    li.setAttribute('id', task.index);
+    li.classList.add('todo');
+
+    let checkmark;
+    let completedClass;
+    if (task.completed === true) {
+      checkmark = '<span class="material-icons checkmark">done</span>';
+      completedClass = 'completed';
+    }
+    
+    li.innerHTML = `
+    <button type="button" id="${task.index}" class="checkbox ${completedClass}" >${checkmark}</button>
+    <p contentEditable="true" class="desc">${task.description}</p>
+    <div class="dots">
+      <span class="material-icons">more_vert</span>
+    </div>
+    <div class="bin ">
+      <span class="material-symbols-outlined delete-bin">delete</span>
+    </div>
+    `;
+
+    container.appendChild(li);
+  })
 };
 
-const displayTasks = (tasks) => {
-  // const tasks = tasks;
-  tasks.forEach((task) => addTaskToList(task));
-};
+
+
+
+// const displayTasks = (tasks) => {
+//   // const tasks = tasks;
+//   tasks.forEach((task) => addTaskToList(task));
+// };
 
 // Display local storage items on page
 // document.addEventListener('DOMContentLoaded', displayTasks(tasks));
