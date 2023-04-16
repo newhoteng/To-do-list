@@ -1,7 +1,7 @@
 import './style.css';
 import Task from './modules/task.js';
 import { addTaskToStorage, addTaskToDOM } from './modules/addTask.js';
-import { removeTaskFromStorage } from './modules/RemoveTask.js';
+import { removeTask, editTask } from './modules/removeTask.js';
 
 // localStorage.clear()
 
@@ -38,13 +38,13 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   const task = new Task (description, index);
   addTaskToStorage(task, taskStorage);
   addTaskToDOM(task, ul);
+  // clear input field
   document.querySelector('#description').value = '';
 });
 
 // event listener for focusin/focus on task description
 ul.addEventListener('focusin', (e) => {
   if (e.target.matches('.desc')) {
-    console.log('it works')
     e.target.style.textDecoration = 'none';
     e.target.parentElement.style.background = '#fffeca';
     e.target.nextElementSibling.style.display = 'none';
@@ -55,35 +55,36 @@ ul.addEventListener('focusin', (e) => {
 // listen for focusout/blur on task description
 ul.addEventListener('focusout', (e) => {
   if (e.target.matches('.desc')) {
-    console.log('does it work?')
     e.target.style.textDecoration = '';
     e.target.parentElement.style.background = '';
     e.target.nextElementSibling.style.display = 'flex';
     e.target.nextElementSibling.nextElementSibling.style.display = '';
 
-    // // update description in storage
-    // const newText = e.target.innerHTML;
-    // editTask(newText, i);
+    // editTask = (newtext, taskIndex, taskArray, li)
+    // update description in storage
+    const li = e.target.parentElement;
+    const index = li.getAttribute('id');
+    const newText = e.target.innerHTML;
+    editTask(newText, index, taskStorage, li);
   }
 });
 
 ul.addEventListener('mousedown', (e) => {
-  if (e.target.matches('.delete-bin')) {
-    const li = e.target.parentElement.parentElement
-    const index = li.getAttribute('id');
-    removeTaskFromStorage(index, taskStorage);
-    li.remove();
-  }
+  setTimeout(() => {
+    if (e.target.matches('.delete-bin')) {
+      const li = e.target.parentElement.parentElement
+      const index = li.getAttribute('id');
+      removeTask(index, taskStorage, li);
+    }
+  }, 0)
 });
 
-// ul.addEventListener('mousedown', (e) => {
-//   if (e.target.matches('.delete-bin')) {
-//     const index = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.getAttribute('id');
-//     const li = e.target.parentElement.parentElement;
-//     deleteTask(index);
-//     li.remove();
-//   }
-// });
+// document.getElementById("test").addEventListener('click', function (event) {
+//   setTimeout( () => {
+//         console.log("A clicked happend 1000ms ago")
+//    }, 1000)
+// })
+
 
 
 
@@ -93,14 +94,6 @@ ul.addEventListener('mousedown', (e) => {
 //   const taskDescriptions = document.querySelectorAll('.desc');
 //   const checkBoxes = document.querySelectorAll('.checkbox');
 //   const binIcons = document.querySelectorAll('.delete-bin');
-
-//   // event listener for bin icons
-//   for (let i = 0; i < binIcons.length; i += 1) {
-//     const bin = binIcons[i];
-//     bin.addEventListener('mousedown', () => {
-//       deleteTask(i);
-//     });
-//   }
 
 //   // event listener for checkboxes
 //   // const checkBoxes = document.getElementsByClassName('checkbox');
