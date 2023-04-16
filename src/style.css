@@ -93,7 +93,7 @@ form button:hover {
   opacity: 0.8;
 }
 
-.todo {
+li.todo {
   position: relative;
   background-color: #fff;
   padding-left: 1rem;
@@ -105,7 +105,7 @@ form button:hover {
   gap: 1rem;
 }
 
-.todo .checkbox {
+li.todo .checkbox {
   background-color: transparent;
   outline: none;
   padding: 0;
@@ -120,16 +120,20 @@ form button:hover {
   justify-content: center;
 }
 
-.todo .completed {
+li.completed .checkbox {
   border: none;
 }
 
 .checkmark {
   position: absolute;
+  color: transparent;
+}
+
+li.completed .checkmark {
   color: #2e8ae6;
 }
 
-.todo p {
+li.todo .desc {
   padding: 15px 0;
   line-height: 20px;
   word-wrap: break-word;
@@ -137,7 +141,7 @@ form button:hover {
   outline: none;
 }
 
-.completed + .desc {
+li.completed .desc {
   color: rgba(0, 0, 0, 0.45);
   text-decoration: line-through;
 }

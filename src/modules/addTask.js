@@ -10,15 +10,12 @@ export const addTaskToDOM = (task, container) => {
   li.setAttribute('id', task.index);
   li.classList.add('todo');
 
-  let checkmark;
-  let completedClass;
   if (task.completed === true) {
-    checkmark = '<span class="material-icons checkmark">done</span>';
-    completedClass = 'completed';
+    li.classList.add('completed');
   }
   
   li.innerHTML = `
-  <button type="button" id="${task.index}" class="checkbox ${completedClass}" >${checkmark}</button>
+  <button type="button" class="checkbox" ><span class="material-icons checkmark">done</span></button>
   <p contentEditable="true" class="desc">${task.description}</p>
   <div class="dots">
     <span class="material-icons">more_vert</span>
