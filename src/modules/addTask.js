@@ -4,6 +4,7 @@ export const addTaskToStorage = (task, taskArray) => {
   localStorage.setItem('tasks', JSON.stringify(taskArray));
 };
 
+// Add task to DOM
 export const addTaskToDOM = (task, container) => {
   const li = document.createElement('li');
   li.setAttribute('id', task.index);

@@ -1,7 +1,7 @@
 import './style.css';
 import Task from './modules/task.js';
 import { addTaskToStorage, addTaskToDOM } from './modules/addTask.js';
-import { removeTask } from './modules/RemoveTask.js';
+import { removeTaskFromStorage } from './modules/RemoveTask.js';
 
 // localStorage.clear()
 
@@ -41,7 +41,7 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   document.querySelector('#description').value = '';
 });
 
-// event listener for focusin
+// event listener for focusin/focus on task description
 ul.addEventListener('focusin', (e) => {
   if (e.target.matches('.desc')) {
     console.log('it works')
@@ -52,6 +52,7 @@ ul.addEventListener('focusin', (e) => {
   }
 });
 
+// listen for focusout/blur on task description
 ul.addEventListener('focusout', (e) => {
   if (e.target.matches('.desc')) {
     console.log('does it work?')
@@ -65,6 +66,24 @@ ul.addEventListener('focusout', (e) => {
     // editTask(newText, i);
   }
 });
+
+ul.addEventListener('mousedown', (e) => {
+  if (e.target.matches('.delete-bin')) {
+    const li = e.target.parentElement.parentElement
+    const index = li.getAttribute('id');
+    removeTaskFromStorage(index, taskStorage);
+    li.remove();
+  }
+});
+
+// ul.addEventListener('mousedown', (e) => {
+//   if (e.target.matches('.delete-bin')) {
+//     const index = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.getAttribute('id');
+//     const li = e.target.parentElement.parentElement;
+//     deleteTask(index);
+//     li.remove();
+//   }
+// });
 
 
 

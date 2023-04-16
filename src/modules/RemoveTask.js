@@ -1,4 +1,5 @@
-export const removeTask = (taskIndex, taskArray) => {
+// Remove task from storage
+export const removeTaskFromStorage = (taskIndex, taskArray) => {
   taskArray.splice((taskIndex - 1), 1);
 
   taskArray.forEach((task, index) => {
