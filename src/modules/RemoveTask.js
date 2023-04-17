@@ -16,7 +16,6 @@ export const removeTask = (taskIndex, taskArray, li) => {
   listOfli.forEach((li, index) => {
     li.setAttribute('id', index + 1);
   })
-  
 };
 
 // Update task

@@ -6,20 +6,19 @@ import { markCompleted, markUnCompleted, clearCompleted } from './modules/intera
 
 // localStorage.clear()
 
-
-// import { bind } from 'lodash';
-
-// const taskStorage = JSON.parse(localStorage.getItem('tasks')) || [];
-
 const taskStorage = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 
 const ul = document.getElementById('list-items');
+
+
 
 const displayTasks = (taskArray, container) => {
   taskArray.forEach(task => {
     addTaskToDOM(task, container)
   });
 }
+
+
 
 
 // Display local storage items on page
@@ -68,7 +67,7 @@ ul.addEventListener('focusout', (e) => {
 
 ul.addEventListener('keypress', (e) => {
   if (e.target.matches('.desc')) {
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
       e.preventDefault();
       e.target.style.textDecoration = '';
       e.target.parentElement.style.background = '';
@@ -92,7 +91,6 @@ ul.addEventListener('mousedown', (e) => {
 });
 
 // event listener for checkboxes
-
 ul.addEventListener('click', (e) => {
   if (e.target.matches('.checkmark')) {
     const li = e.target.parentElement.parentElement;
@@ -107,38 +105,12 @@ ul.addEventListener('click', (e) => {
   }
 });
 
-  // const checkBoxes = document.getElementsByClassName('checkbox');
-  // for (let i = 0; i < checkBoxes.length; i += 1) {
-  //   const box = checkBoxes[i];
-  //   box.addEventListener('click', () => {
-  //     box.classList.toggle('completed');
-
-  //     if (box.classList.contains('completed')) {
-  //       markCompleted(i);
-  //       box.innerHTML = '<span class="material-icons checkmark">done</span>';
-  //     } else {
-  //       markUnCompleted(i);
-  //       box.innerHTML = '';
-  //     }
-  //   });
-  // }
+// Event listener for "clear all completed"
+const clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', (e) => {
+  clearCompleted(taskStorage);
+})
 
 
 
 
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   displayTasks(tasks)
-  
-//   const taskDescriptions = document.querySelectorAll('.desc');
-//   const checkBoxes = document.querySelectorAll('.checkbox');
-//   const binIcons = document.querySelectorAll('.delete-bin');
-
-//   
-// });
-
-
-// // Event listener for "clear all completed"
-// const clearButton = document.getElementById('clear');
-
-// clearButton.addEventListener('click', clearCompleted, false);
