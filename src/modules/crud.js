@@ -1,29 +1,60 @@
-// Local storage functions
-// const Tasks = JSON.parse(localStorage.getItem('list')) || [];
-
-export const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
-export const addNewTask = (task) => {
-  tasks.push(task);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+// Add task to storage
+export const addTaskToStorage = (task, taskArray) => {
+  taskArray.push(task);
+  localStorage.setItem('tasks', JSON.stringify(taskArray));
 };
 
-export const deleteTask = (index) => {
-  tasks.splice((index), 1);
+// Add task to DOM
+export const addTaskToDOM = (task, container) => {
+  const li = document.createElement('li');
+  li.setAttribute('id', task.index);
+  li.classList.add('todo');
 
-  for (let i = 0; i < tasks.length; i += 1) {
-    tasks[i].index = i + 1;
+  if (task.completed === true) {
+    li.classList.add('completed');
   }
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  li.innerHTML = `
+  <button type="button" class="checkbox" ><span class="material-icons checkmark">done</span></button>
+  <p contentEditable="true" class="desc">${task.description}</p>
+  <div class="dots">
+    <span class="material-icons">more_vert</span>
+  </div>
+  <div class="bin ">
+    <span class="material-symbols-outlined delete-bin">delete</span>
+  </div>
+  `;
+
+  container.appendChild(li);
 };
 
-export const editTask = (newtext, index) => {
-  // const tasks = getLocalStorage();
+// Remove task from storage and DOM
+export const removeTask = (taskIndex, taskArray, li) => {
+  // Remove task from storage array, reset index property and set localStorage
+  taskArray.splice((taskIndex - 1), 1);
+
+  taskArray.forEach((task, index) => {
+    task.index = index + 1;
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(taskArray));
+
+  // Remove corresponding li from DOM and reset id attribute of remaining li
+  li.remove();
+  const listOfli = document.querySelectorAll('li.todo');
+
+  listOfli.forEach((li, index) => {
+    li.setAttribute('id', index + 1);
+  });
+};
+
+// Update task
+export const editTask = (newtext, taskIndex, taskArray, li) => {
   // if new text is empty delete
   if (newtext === '') {
-    deleteTask(index);
+    removeTask(taskIndex, taskArray, li);
   } else {
-    tasks[index].description = newtext;
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    taskArray[taskIndex - 1].description = newtext;
+    localStorage.setItem('tasks', JSON.stringify(taskArray));
   }
 };
