@@ -7,19 +7,13 @@ import { markCompleted, markUnCompleted, clearCompleted } from './modules/intera
 // localStorage.clear()
 
 const taskStorage = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-
 const ul = document.getElementById('list-items');
-
-
 
 const displayTasks = (taskArray, container) => {
   taskArray.forEach(task => {
     addTaskToDOM(task, container)
   });
 }
-
-
-
 
 // Display local storage items on page
 document.addEventListener('DOMContentLoaded', displayTasks(taskStorage, ul));
