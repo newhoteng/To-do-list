@@ -1,4 +1,3 @@
-
 // Interactive functions
 export const markCompleted = (taskIndex, taskArray) => {
   taskArray[taskIndex - 1].completed = true;
@@ -15,8 +14,8 @@ export const clearCompleted = (taskArray) => {
 
   UnCompletedTasks.forEach((task, index) => {
     task.index = index + 1;
-  })
- 
+  });
+
   localStorage.setItem('tasks', JSON.stringify(UnCompletedTasks));
   window.location.reload();
 };

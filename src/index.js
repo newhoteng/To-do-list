@@ -10,10 +10,10 @@ const taskStorage = localStorage.getItem('tasks') ? JSON.parse(localStorage.getI
 const ul = document.getElementById('list-items');
 
 const displayTasks = (taskArray, container) => {
-  taskArray.forEach(task => {
-    addTaskToDOM(task, container)
+  taskArray.forEach((task) => {
+    addTaskToDOM(task, container);
   });
-}
+};
 
 // Display local storage items on page
 document.addEventListener('DOMContentLoaded', displayTasks(taskStorage, ul));
@@ -26,7 +26,7 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   if (description === '') {
     return;
   }
-  const task = new Task (description, index);
+  const task = new Task(description, index);
   addTaskToStorage(task, taskStorage);
   addTaskToDOM(task, ul);
   // clear input field
@@ -73,7 +73,6 @@ ul.addEventListener('keypress', (e) => {
   }
 });
 
-
 ul.addEventListener('mousedown', (e) => {
   setTimeout(() => {
     if (e.target.matches('.delete-bin')) {
@@ -81,7 +80,7 @@ ul.addEventListener('mousedown', (e) => {
       const index = li.getAttribute('id');
       removeTask(index, taskStorage, li);
     }
-  }, 0)
+  }, 0);
 });
 
 // event listener for checkboxes
@@ -101,10 +100,6 @@ ul.addEventListener('click', (e) => {
 
 // Event listener for "clear all completed"
 const clearButton = document.getElementById('clear');
-clearButton.addEventListener('click', (e) => {
+clearButton.addEventListener('click', () => {
   clearCompleted(taskStorage);
-})
-
-
-
-
+});

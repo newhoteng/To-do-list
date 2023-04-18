@@ -13,7 +13,7 @@ export const addTaskToDOM = (task, container) => {
   if (task.completed === true) {
     li.classList.add('completed');
   }
-  
+
   li.innerHTML = `
   <button type="button" class="checkbox" ><span class="material-icons checkmark">done</span></button>
   <p contentEditable="true" class="desc">${task.description}</p>
@@ -26,4 +26,4 @@ export const addTaskToDOM = (task, container) => {
   `;
 
   container.appendChild(li);
-}
+};

@@ -171,7 +171,6 @@ li.completed .desc {
   right: 0;
   padding: 0 1rem;
   z-index: 0;
-  border: 1px solid red;
 }
 
 .todo .bin:hover {
