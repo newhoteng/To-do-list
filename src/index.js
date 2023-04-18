@@ -1,6 +1,8 @@
 import './style.css';
 import Task from './modules/task.js';
-import { addTaskToStorage, addTaskToDOM, removeTask, editTask } from './modules/crud.js';
+import {
+  addTaskToStorage, addTaskToDOM, removeTask, editTask,
+} from './modules/crud.js';
 import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
 
 // localStorage.clear()
