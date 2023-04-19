@@ -28,6 +28,13 @@ export const addTaskToDOM = (task, container) => {
   container.appendChild(li);
 };
 
+// Display all tasks
+export const displayTasks = (taskArray, container) => {
+  taskArray.forEach((task) => {
+    addTaskToDOM(task, container);
+  });
+};
+
 // Remove task from storage and DOM
 export const removeTask = (taskIndex, taskArray, li) => {
   // Remove task from storage array, reset index property and set localStorage

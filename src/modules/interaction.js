@@ -1,3 +1,4 @@
+import { addTaskToDOM } from "./crud.js";
 // Interactive functions
 export const markCompleted = (taskIndex, taskArray) => {
   taskArray[taskIndex - 1].completed = true;
@@ -9,13 +10,29 @@ export const markUnCompleted = (taskIndex, taskArray) => {
   localStorage.setItem('tasks', JSON.stringify(taskArray));
 };
 
-export const clearCompleted = (taskArray) => {
+// export const clearCompleted = (taskArray) => {
+//   const UnCompletedTasks = taskArray.filter((task) => task.completed === false);
+
+//   UnCompletedTasks.forEach((task, index) => {
+//     task.index = index + 1;
+//   });
+
+//   localStorage.setItem('tasks', JSON.stringify(UnCompletedTasks));
+//   window.location.reload();
+// };
+
+
+export const clearCompleted = (taskArray, container) => {
   const UnCompletedTasks = taskArray.filter((task) => task.completed === false);
 
-  UnCompletedTasks.forEach((task, index) => {
+  taskArray.splice(0, taskArray.length, ...UnCompletedTasks);
+  taskArray.forEach((task, index) => {
     task.index = index + 1;
   });
+  localStorage.setItem('tasks', JSON.stringify(taskArray));
+  container.innerHTML = '';
 
-  localStorage.setItem('tasks', JSON.stringify(UnCompletedTasks));
-  window.location.reload();
+  taskArray.forEach(task => {
+    addTaskToDOM(task, container);
+  }) 
 };

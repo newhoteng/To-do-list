@@ -1,7 +1,7 @@
 import './style.css';
 import Task from './modules/task.js';
 import {
-  addTaskToStorage, addTaskToDOM, removeTask, editTask,
+  addTaskToStorage, addTaskToDOM, removeTask, editTask, displayTasks
 } from './modules/crud.js';
 import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
 
@@ -9,12 +9,6 @@ import { markCompleted, markUnCompleted, clearCompleted } from './modules/intera
 
 const taskStorage = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 const ul = document.getElementById('list-items');
-
-const displayTasks = (taskArray, container) => {
-  taskArray.forEach((task) => {
-    addTaskToDOM(task, container);
-  });
-};
 
 // Display local storage items on page
 document.addEventListener('DOMContentLoaded', displayTasks(taskStorage, ul));
@@ -102,5 +96,5 @@ ul.addEventListener('click', (e) => {
 // Event listener for "clear all completed"
 const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
-  clearCompleted(taskStorage);
+  clearCompleted(taskStorage, ul);
 });
