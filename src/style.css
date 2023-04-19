@@ -189,6 +189,7 @@ li.completed .desc {
   display: block;
   opacity: 0.5;
   cursor: pointer;
+  outline: none;
 }
 
 .clear:hover {
