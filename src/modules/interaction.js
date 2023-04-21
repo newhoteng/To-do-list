@@ -1,4 +1,3 @@
-import { addTaskToDOM } from './crud.js';
 // Interactive functions
 export const markCompleted = (taskIndex, taskArray) => {
   taskArray[taskIndex - 1].completed = true;

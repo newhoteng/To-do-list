@@ -137,8 +137,8 @@ li.todo .desc {
   padding: 15px 0;
   line-height: 20px;
   word-wrap: break-word;
-  flex: 1;
   outline: none;
+  width: calc(100% - 80px);
 }
 
 li.completed .desc {
