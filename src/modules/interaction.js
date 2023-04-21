@@ -10,7 +10,7 @@ export const markUnCompleted = (taskIndex, taskArray) => {
   localStorage.setItem('tasks', JSON.stringify(taskArray));
 };
 
-export const clearCompleted = (taskArray, container) => {
+export const clearCompleted = (taskArray) => {
   const UnCompletedTasks = taskArray.filter((task) => task.completed === false);
 
   taskArray.splice(0, taskArray.length, ...UnCompletedTasks);
@@ -18,9 +18,15 @@ export const clearCompleted = (taskArray, container) => {
     task.index = index + 1;
   });
   localStorage.setItem('tasks', JSON.stringify(taskArray));
-  container.innerHTML = '';
 
-  taskArray.forEach((task) => {
-    addTaskToDOM(task, container);
+  const completedLi = document.querySelectorAll('li.todo.completed')
+  const uncompletedLi = document.querySelectorAll('li[class="todo"]')
+
+  completedLi.forEach(li => {
+    li.remove();
   });
+
+  uncompletedLi.forEach((li, index) => {
+    li.setAttribute('id', index + 1);
+  })
 };

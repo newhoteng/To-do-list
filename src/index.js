@@ -96,5 +96,5 @@ ul.addEventListener('click', (e) => {
 // Event listener for "clear all completed"
 const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
-  clearCompleted(taskStorage, ul);
+  clearCompleted(taskStorage);
 });
