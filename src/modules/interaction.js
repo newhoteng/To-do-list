@@ -10,17 +10,6 @@ export const markUnCompleted = (taskIndex, taskArray) => {
   localStorage.setItem('tasks', JSON.stringify(taskArray));
 };
 
-// export const clearCompleted = (taskArray) => {
-//   const UnCompletedTasks = taskArray.filter((task) => task.completed === false);
-
-//   UnCompletedTasks.forEach((task, index) => {
-//     task.index = index + 1;
-//   });
-
-//   localStorage.setItem('tasks', JSON.stringify(UnCompletedTasks));
-//   window.location.reload();
-// };
-
 export const clearCompleted = (taskArray, container) => {
   const UnCompletedTasks = taskArray.filter((task) => task.completed === false);
 
