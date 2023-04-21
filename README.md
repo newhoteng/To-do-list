@@ -1,6 +1,3 @@
-# To-do-list
-<!-- TABLE OF CONTENTS -->
-
 # 📗 Table of Contents
 
 - [📖 About the Project](https://github.com/newhoteng/To-do-list/blob/main/README.md#open_book-awesome-books)
@@ -20,7 +17,7 @@
 - [📝 License](https://github.com/newhoteng/To-do-list/blob/main/README.md#memo-license)
 
 #  :open_book: To-do-list
-**Awesome books** is a simple 'To-do-list' app built with webpack
+**To-do-list** is a simple 'To-do-list' app that allows users to add, check-off and delete daily activities. It is built with HTML, CSS, JavaScript and packaged using webpack
 
 ## :hammer_and_wrench: Build With
 ### Tech Stack
