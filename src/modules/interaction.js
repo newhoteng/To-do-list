@@ -18,14 +18,14 @@ export const clearCompleted = (taskArray) => {
   });
   localStorage.setItem('tasks', JSON.stringify(taskArray));
 
-  const completedLi = document.querySelectorAll('li.todo.completed')
-  const uncompletedLi = document.querySelectorAll('li[class="todo"]')
+  const completedLi = document.querySelectorAll('li.todo.completed');
+  const uncompletedLi = document.querySelectorAll('li[class="todo"]');
 
-  completedLi.forEach(li => {
+  completedLi.forEach((li) => {
     li.remove();
   });
 
   uncompletedLi.forEach((li, index) => {
     li.setAttribute('id', index + 1);
-  })
+  });
 };
