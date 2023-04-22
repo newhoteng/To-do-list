@@ -14,7 +14,8 @@ const ul = document.getElementById('list-items');
 document.addEventListener('DOMContentLoaded', displayTasks(taskStorage, ul));
 
 // Create new task from form entry
-document.querySelector('#form').addEventListener('submit', (e) => {
+const form = document.querySelector('#form');
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   const description = document.querySelector('#description').value;
   const index = taskStorage.length + 1;
@@ -25,7 +26,7 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   addTaskToStorage(task, taskStorage);
   addTaskToDOM(task, ul);
   // clear input field
-  document.querySelector('#description').value = '';
+  form.reset();
 });
 
 // event listener for focusin/focus on task description
@@ -98,3 +99,16 @@ const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
   clearCompleted(taskStorage);
 });
+
+// dragging
+ul.addEventListener('dragstart', (e) => {
+  if (e.target.matches('li.todo')) {
+    e.target.classList.add('dragging');
+  }
+});
+
+ul.addEventListener('dragend', (e) => {
+  if (e.target.matches('li.todo')) {
+    e.target.classList.remove('dragging');
+  }
+})

@@ -8,6 +8,7 @@ export const addTaskToStorage = (task, taskArray) => {
 export const addTaskToDOM = (task, container) => {
   const li = document.createElement('li');
   li.setAttribute('id', task.index);
+  li.setAttribute('draggable', 'true');
   li.classList.add('todo');
 
   if (task.completed === true) {

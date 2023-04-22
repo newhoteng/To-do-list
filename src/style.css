@@ -95,6 +95,7 @@ form button:hover {
 
 li.todo {
   position: relative;
+  /* border: 1px solid red; */
   background-color: #fff;
   padding-left: 1rem;
   font-size: 1rem;
@@ -103,6 +104,17 @@ li.todo {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+li.dragging {
+  border-bottom: none;
+  transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+  opacity: 95;
+  border: 1px solid #2e8ae6;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  /* position: absolute; */
 }
 
 li.todo .checkbox {
