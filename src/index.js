@@ -99,16 +99,3 @@ const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
   clearCompleted(taskStorage);
 });
-
-// dragging
-ul.addEventListener('dragstart', (e) => {
-  if (e.target.matches('li.todo')) {
-    e.target.classList.add('dragging');
-  }
-});
-
-ul.addEventListener('dragend', (e) => {
-  if (e.target.matches('li.todo')) {
-    e.target.classList.remove('dragging');
-  }
-})
