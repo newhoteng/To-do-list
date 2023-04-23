@@ -31,6 +31,7 @@ body {
   text-align: left;
   border-radius: 3px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  overflow: auto;
 }
 
 h2 {
@@ -213,4 +214,10 @@ li.completed .desc {
 .clear:hover {
   text-decoration: underline;
   opacity: 0.8;
+}
+
+@media all and (max-width: 768px) {
+  body {
+    display: block;
+  }
 }
