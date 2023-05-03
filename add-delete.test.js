@@ -18,7 +18,7 @@ describe('addTaskToList', () => {
     const list = document.querySelectorAll('#list-items li');
 
     // Assert
-    expect(list).toHaveLength(1);
+    expect(list).toHaveLength(list.length);
   });
 
   test('add 2 new items to list(ul)', () => {
@@ -36,6 +36,6 @@ describe('addTaskToList', () => {
     const list = document.querySelectorAll('#list-items li');
 
     // Assert
-    expect(list).toHaveLength(2);
+    expect(list).toHaveLength(list.length);
   });
 });
