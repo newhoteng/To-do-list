@@ -99,3 +99,46 @@ const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', () => {
   clearCompleted(taskStorage);
 });
+
+// dragging
+ul.addEventListener('dragstart', (e) => {
+  if (e.target.matches('li.todo')) {
+    // e.target.classList.add('dragging')
+    setTimeout(() => e.target.classList.add('dragging'), 0);
+  }
+});
+
+ul.addEventListener('dragend', (e) => {
+  if (e.target.matches('li.todo')) {
+    e.target.classList.remove('dragging');
+  }
+})
+
+const initSortableList = (e) => {
+  e.preventDefault();
+  const draggingItem = ul.querySelector('.dragging');
+  // draggingItem.classList.add('moving');
+  // Get all items except currently dragging
+  const siblings = [...ul.querySelectorAll('.todo:not(.dragging)')];
+
+  // Find the sibling after which the dragging item should be placed
+  let nextSibling = siblings.find(sibling => {
+    return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+  });
+  // Inserting the dragging item before the found sibling
+  ul.insertBefore(draggingItem, nextSibling);
+  
+  const lis = ul.querySelectorAll('.todo');
+  // console.log(lis);
+  const ids = [];
+  lis.forEach(li => {
+    ids.push(li.getAttribute('id'));
+  });
+  // console.log(ids);
+  // ids.forEach(id => {
+
+  // })
+}
+
+ul.addEventListener('dragover', initSortableList);
+ul.addEventListener('dragenter', e => e.preventDefault());

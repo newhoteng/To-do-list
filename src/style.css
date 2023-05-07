@@ -107,14 +107,23 @@ li.todo {
 }
 
 li.dragging {
+  /* border-bottom: none;
+  transform: scale(0.98);
+  -webkit-transform: scale(0.98); */
+  opacity: 0;
+  /* border: 1px solid #2e8ae6;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35); */
+}
+
+/* li[class="todo dragging moving"] {
   border-bottom: none;
   transform: scale(0.98);
   -webkit-transform: scale(0.98);
-  opacity: 0;
   border: 1px solid #2e8ae6;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-}
+} */
 
 li.todo .checkbox {
   background-color: transparent;

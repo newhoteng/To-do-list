@@ -29,3 +29,5 @@ export const clearCompleted = (taskArray) => {
     li.setAttribute('id', index + 1);
   });
 };
+
+
