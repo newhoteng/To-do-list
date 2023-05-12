@@ -117,7 +117,6 @@ ul.addEventListener('dragend', (e) => {
 const initSortableList = (e) => {
   e.preventDefault();
   const draggingItem = ul.querySelector('.dragging');
-  // draggingItem.classList.add('moving');
   // Get all items except currently dragging
   const siblings = [...ul.querySelectorAll('.todo:not(.dragging)')];
 
