@@ -3,7 +3,7 @@ import Task from './modules/task.js';
 import {
   addTaskToStorage, addTaskToDOM, removeTask, editTask, displayTasks,
 } from './modules/crud.js';
-import { markCompleted, markUnCompleted, clearCompleted } from './modules/interaction.js';
+import { markCompleted, markUnCompleted, clearCompleted, sortStorage } from './modules/interaction.js';
 
 // localStorage.clear()
 
@@ -134,10 +134,13 @@ const initSortableList = (e) => {
   lis.forEach(li => {
     ids.push(li.getAttribute('id'));
   });
-  // console.log(ids);
-  // ids.forEach(id => {
 
-  // })
+  // Re assign id attributes based on new order
+  lis.forEach((li, index) => {
+    li.setAttribute('id', index + 1);
+  });
+
+  sortStorage(ids, taskStorage);
 }
 
 ul.addEventListener('dragover', initSortableList);
