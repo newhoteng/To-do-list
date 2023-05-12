@@ -3,7 +3,9 @@ import Task from './modules/task.js';
 import {
   addTaskToStorage, addTaskToDOM, removeTask, editTask, displayTasks,
 } from './modules/crud.js';
-import { markCompleted, markUnCompleted, clearCompleted, sortStorage } from './modules/interaction.js';
+import {
+  markCompleted, markUnCompleted, clearCompleted, sortStorage,
+} from './modules/interaction.js';
 
 // localStorage.clear()
 
@@ -103,16 +105,17 @@ clearButton.addEventListener('click', () => {
 // dragging
 ul.addEventListener('dragstart', (e) => {
   if (e.target.matches('li.todo')) {
-    // e.target.classList.add('dragging')
-    setTimeout(() => e.target.classList.add('dragging'), 0);
+    e.target.classList.add('dragging');
+    setTimeout(() => { e.target.style.opacity = 0; }, 0);
   }
 });
 
 ul.addEventListener('dragend', (e) => {
   if (e.target.matches('li.todo')) {
     e.target.classList.remove('dragging');
+    e.target.style.opacity = 1;
   }
-})
+});
 
 const initSortableList = (e) => {
   e.preventDefault();
@@ -121,16 +124,16 @@ const initSortableList = (e) => {
   const siblings = [...ul.querySelectorAll('.todo:not(.dragging)')];
 
   // Find the sibling after which the dragging item should be placed
-  let nextSibling = siblings.find(sibling => {
-    return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
-  });
+  const nextSibling = siblings.find(
+    (sibling) => e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2,
+  );
   // Inserting the dragging item before the found sibling
   ul.insertBefore(draggingItem, nextSibling);
-  
+
   const lis = ul.querySelectorAll('.todo');
   // console.log(lis);
   const ids = [];
-  lis.forEach(li => {
+  lis.forEach((li) => {
     ids.push(li.getAttribute('id'));
   });
 
@@ -140,7 +143,7 @@ const initSortableList = (e) => {
   });
 
   sortStorage(ids, taskStorage);
-}
+};
 
 ul.addEventListener('dragover', initSortableList);
-ul.addEventListener('dragenter', e => e.preventDefault());
+ul.addEventListener('dragenter', (e) => e.preventDefault());

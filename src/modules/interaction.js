@@ -33,11 +33,11 @@ export const clearCompleted = (taskArray) => {
 export const sortStorage = (arrayOfIds, taskArray) => {
   const sortedtaskArray = [];
   arrayOfIds.forEach((id, index) => {
-    const task = taskArray.find((task) => task.index == id);
+    const task = taskArray.find((task) => task.index === Number(id));
     task.index = index + 1;
-    sortedtaskArray.push(task)
-  })
+    sortedtaskArray.push(task);
+  });
 
   taskArray.splice(0, taskArray.length, ...sortedtaskArray);
   localStorage.setItem('tasks', JSON.stringify(taskArray));
-}
+};
