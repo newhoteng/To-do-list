@@ -116,16 +116,6 @@ li.dragging {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
-/* li[class="todo dragging moving"] {
-  border-bottom: none;
-  transform: scale(0.98);
-  -webkit-transform: scale(0.98);
-  border: 1px solid #2e8ae6;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-} */ 
-/* transition: opacity 2s linear; */
-
 li.todo .checkbox {
   background-color: transparent;
   outline: none;
@@ -200,6 +190,10 @@ li.completed .desc {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.todo .dots:hover {
+  opacity: 0.8;
 }
 
 .desc:focus + .dots {
