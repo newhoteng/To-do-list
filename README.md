@@ -64,7 +64,7 @@ Install this project with:<br>
 ```
 npm install
 ```
-
+<!-- npm run build, npm run deploy -->
 
 <p align="right">(<a href="https://github.com/newhoteng/To-do-list#readme">back to top</a>)</p>
 
