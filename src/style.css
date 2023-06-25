@@ -35,7 +35,7 @@ body {
 }
 
 h2 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   padding: 1rem;
   line-height: 20px;
@@ -71,6 +71,7 @@ form input[type=text] {
   line-height: 50px;
   height: 50px;
   font-style: italic;
+  font-size: 16px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -214,6 +215,7 @@ li.completed .desc {
   opacity: 0.5;
   cursor: pointer;
   outline: none;
+  font-size: 16px;
 }
 
 .clear:hover {
