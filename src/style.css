@@ -223,9 +223,3 @@ li.completed .desc {
   text-decoration: underline;
   opacity: 0.8;
 }
-
-@media all and (max-width: 768px) {
-  body {
-    display: block;
-  }
-}
