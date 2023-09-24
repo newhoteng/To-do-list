@@ -18,8 +18,8 @@ html {
 
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
-  height: 100vh;
-  height: 100svh;
+  min-height: 100vh;
+  min-height: 100svh;
   background: #f1f2f5;
   display: flex;
   align-items: center;
