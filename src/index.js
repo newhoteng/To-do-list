@@ -7,8 +7,6 @@ import {
   markCompleted, markUnCompleted, clearCompleted, sortStorage,
 } from './modules/interaction.js';
 
-// localStorage.clear()
-
 const taskStorage = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 const ul = document.getElementById('list-items');
 
