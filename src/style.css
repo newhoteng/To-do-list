@@ -19,6 +19,7 @@ html {
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
   min-height: 100vh;
+  /* stylelint-disable-next-line */
   min-height: 100svh;
   background: #f1f2f5;
   display: flex;
